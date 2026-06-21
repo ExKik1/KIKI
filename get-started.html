@@ -68,7 +68,7 @@ body{display:flex;min-height:100vh;}
 <div class="particles-container" id="particles"></div>
 <div class="gs-layout">
   <div class="gs-left">
-    <div class="gs-logo-wrap"><a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a></div>
+    <div class="gs-logo-wrap"><a href="index.html" class="logo"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;"></a></div>
     <div class="gs-pitch">
       <h2>Start building<br>something <span class="accent">amazing</span></h2>
       <p>Create your free account and get access to all the tools you need to design, build, and ship faster.</p>
@@ -127,7 +127,7 @@ body{display:flex;min-height:100vh;}
           <input type="checkbox" required>
           I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
         </div>
-        <button type="submit" class="submit-btn glass-btn glass-btn-primary"><span class="glass-shine"></span><span class="btn-label">🚀 Create Free Account</span></button>
+        <button type="submit" class="btn btn-primary btn-full">🚀 Create Free Account</button>
       </form>
       <div class="login-link-row">Already have an account? <a href="login.html">Log in</a></div>
     </div>
@@ -156,5 +156,6 @@ function handleSignup(e){
   },800);
 }
 </script>
+<script src="api.js"></script>
 </body>
 </html>

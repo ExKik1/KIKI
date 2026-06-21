@@ -54,7 +54,7 @@ body{display:flex;min-height:100vh;}
 <div class="login-layout">
   <div class="login-left">
     <div class="login-logo-wrap">
-      <a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a>
+      <a href="index.html" class="logo"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;"></a>
     </div>
     <h1 class="form-title">Welcome<br><span class="accent">Back</span> 👋</h1>
     <p class="form-sub">Log in to your KIKI account to continue building.</p>
@@ -79,7 +79,7 @@ body{display:flex;min-height:100vh;}
         <input type="checkbox" id="remember" style="width:16px;height:16px;accent-color:#3a4bf4;cursor:pointer">
         <label for="remember">Remember me for 30 days</label>
       </div>
-      <button type="submit" class="submit-btn glass-btn glass-btn-primary"><span class="glass-shine"></span><span class="btn-label" id="btnLabel">Log In to KIKI →</span></button>
+      <button type="submit" class="btn btn-primary btn-full"><span id="btnLabel">Log In to KIKI →</span></button>
     </form>
     <div class="signup-link">Don't have an account? <a href="get-started.html">Sign up free</a></div>
   </div>
@@ -101,5 +101,6 @@ body{display:flex;min-height:100vh;}
 function togglePw(){const pw=document.getElementById('password');pw.type=pw.type==='password'?'text':'password';}
 function handleLogin(e){e.preventDefault();const btn=document.getElementById('btnLabel');btn.textContent='⏳ Logging in...';setTimeout(()=>{window.location.href='index.html';},1500);}
 </script>
+<script src="api.js"></script>
 </body>
 </html>

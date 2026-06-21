@@ -47,7 +47,7 @@
 <div class="particles-container" id="particles"></div>
 <div class="page">
   <nav class="nav">
-    <a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;"></a>
     <ul class="nav-links">
       <li><a href="features.html">Features</a></li>
       <li><a href="templates.html">Templates</a></li>
@@ -57,7 +57,7 @@
     </ul>
     <div class="nav-actions">
       <a href="login.html" class="login-link">Log in</a>
-      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">Get Started</span></button>
+      <button class="btn btn-primary" onclick="location.href='get-started.html'">Get Started</button>
     </div>
   </nav>
 
@@ -106,7 +106,7 @@
           <div class="plan-feat"><span class="feat-y">✓</span> Custom domain</div>
           <div class="plan-feat"><span class="feat-y">✓</span> Priority support</div>
         </div>
-        <button class="plan-btn plan-btn-filled glass-btn glass-btn-primary" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">Start Pro Trial →</span></button>
+        <button class="btn btn-primary btn-full" style="border-radius:12px;font-size:14px;font-weight:700;" onclick="location.href='get-started.html'">Start Pro Trial →</button>
       </div>
       <div class="plan">
         <div class="plan-name">Enterprise</div>
@@ -143,7 +143,7 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a><p>The next-generation creative platform.</p></div>
+      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:22px;width:auto;"></a><p>The next-generation creative platform.</p></div>
       <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
       <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
       <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
@@ -158,5 +158,6 @@ window.addEventListener('scroll',()=>{document.getElementById('st').classList.to
 let annual=true;
 function toggleBilling(){annual=!annual;document.getElementById('tog').classList.toggle('annual',annual);document.querySelectorAll('.amt').forEach(el=>{el.textContent=annual?el.dataset.a:el.dataset.m;});}
 </script>
+<script src="api.js"></script>
 </body>
 </html>

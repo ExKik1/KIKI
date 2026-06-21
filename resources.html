@@ -39,7 +39,7 @@
 <div class="particles-container" id="particles"></div>
 <div class="page">
   <nav class="nav">
-    <a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;"></a>
     <ul class="nav-links">
       <li><a href="features.html">Features</a></li>
       <li><a href="templates.html">Templates</a></li>
@@ -49,7 +49,7 @@
     </ul>
     <div class="nav-actions">
       <a href="login.html" class="login-link">Log in</a>
-      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">Get Started</span></button>
+      <button class="btn btn-primary" onclick="location.href='get-started.html'">Get Started</button>
     </div>
   </nav>
 
@@ -74,8 +74,8 @@
         <h2>Complete KIKI Masterclass: From Zero to Pro</h2>
         <p>A comprehensive 12-part video series covering every feature — from basic setup to advanced AI workflows and team collaboration.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
-          <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" onclick="location.href='watch-demo.html'"><span class="glass-shine"></span><span class="btn-label">▶ Start Learning</span><span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></button>
-          <button class="btn btn-secondary glass-btn glass-btn-secondary btn-cta" style="padding:10px 18px;font-size:14px"><span class="glass-shine"></span><span class="btn-label">📥 Download PDF</span></button>
+          <button class="btn btn-primary btn-cta" onclick="location.href='watch-demo.html'">▶ Start Learning</span><span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+          <button class="btn btn-secondary btn-cta" style="padding:10px 18px;font-size:14px">📥 Download PDF</button>
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
     <div class="nl-box">
       <div><div class="eyebrow-sm" style="margin-bottom:12px">📬 Newsletter</div><h2>Stay in the Loop</h2><p>Weekly tips, tutorials, and product updates. Join 28,000+ creators.</p></div>
       <div>
-        <div class="nl-form"><input type="email" class="input-field" placeholder="Enter your email address..."><button class="btn btn-primary glass-btn glass-btn-primary" style="white-space:nowrap;padding:13px 20px"><span class="glass-shine"></span><span class="btn-label">Subscribe →</span></button></div>
+        <div class="nl-form" data-form="newsletter"><input type="email" class="input-field" placeholder="Enter your email address..."><button class="btn btn-primary" style="white-space:nowrap;padding:13px 20px">Subscribe →</button></div>
         <div class="nl-note">No spam, ever. Unsubscribe with one click.</div>
       </div>
     </div>
@@ -109,7 +109,7 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a><p>The next-generation creative platform.</p></div>
+      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:22px;width:auto;"></a><p>The next-generation creative platform.</p></div>
       <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
       <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
       <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
@@ -122,5 +122,6 @@
 (function(){const c=document.getElementById('particles');const colors=['#3a4bf4','#7b3ff2','#1f8a52','#bff2da','#ddd2fb','#f4a261'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='particle';const s=4+Math.random()*10;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*12}s;animation-duration:${10+Math.random()*14}s;`;c.appendChild(p);}})();
 window.addEventListener('scroll',()=>{document.getElementById('st').classList.toggle('show',window.scrollY>400);});
 </script>
+<script src="api.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@
 <div class="particles-container" id="particles"></div>
 <div class="page">
   <nav class="nav">
-    <a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;"></a>
     <ul class="nav-links">
       <li><a href="features.html">Features</a></li>
       <li><a href="templates.html">Templates</a></li>
@@ -55,7 +55,7 @@
     </ul>
     <div class="nav-actions">
       <a href="login.html" class="login-link">Log in</a>
-      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">Get Started</span></button>
+      <button class="btn btn-primary" onclick="location.href='get-started.html'">Get Started</button>
     </div>
   </nav>
 
@@ -106,15 +106,15 @@
       <h2>Ready to <span class="accent">get started?</span></h2>
       <p>Join 50,000+ creators building with KIKI today. It's free.</p>
       <div class="cta-btns-row">
-        <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">🚀 Get Started Free</span><span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></button>
-        <button class="btn btn-secondary glass-btn glass-btn-secondary btn-cta" onclick="location.href='features.html'"><span class="glass-shine"></span><span class="btn-label">Explore Features →</span></button>
+        <button class="btn btn-primary btn-cta" onclick="location.href='get-started.html'">🚀 Get Started Free</span><span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+        <button class="btn btn-secondary btn-cta" onclick="location.href='features.html'">Explore Features →</button>
       </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a><p>The next-generation creative platform.</p></div>
+      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><img src="logo.svg" alt="KIKI" class="logo-svg" style="height:22px;width:auto;"></a><p>The next-generation creative platform.</p></div>
       <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
       <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
       <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
@@ -138,5 +138,6 @@ function togglePlay(){
 function seekVid(e){const r=e.currentTarget.getBoundingClientRect();prog=((e.clientX-r.left)/r.width)*100;document.getElementById('progBar').style.width=prog+'%';}
 function selectCh(el,title,time){document.querySelectorAll('.ch-item').forEach(c=>c.classList.remove('active'));el.classList.add('active');document.getElementById('sceneTitle').textContent=title;if(playing){clearInterval(timer);playing=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ctrlPlay').textContent='▶';}prog=0;document.getElementById('progBar').style.width='0%';document.getElementById('durText').textContent=time+' / 12:34';}
 </script>
+<script src="api.js"></script>
 </body>
 </html>

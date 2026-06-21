@@ -40,8 +40,7 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="index.html" class="logo">
-      <svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>
-      KIKI
+      <img src="logo.svg" alt="KIKI" class="logo-svg" style="height:28px;width:auto;">
     </a>
     <ul class="nav-links">
       <li><a href="features.html" class="active">Features</a></li>
@@ -52,8 +51,8 @@
     </ul>
     <div class="nav-actions">
       <a href="login.html" class="login-link">Log in</a>
-      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'">
-        <span class="glass-shine"></span><span class="btn-label">Get Started</span>
+      <button class="btn btn-primary" onclick="location.href='get-started.html'">
+        Get Started
       </button>
     </div>
   </nav>
@@ -64,9 +63,9 @@
       <div class="eyebrow">⚡ Platform Features</div>
       <h1>Everything You Need<br>to <span class="accent">Build Anything</span></h1>
       <p>Powerful tools designed for modern creators. From AI‑powered design to real‑time collaboration — KIKI has it all.</p>
-      <button class="btn btn-primary btn-cta glass-btn glass-btn-primary" onclick="location.href='get-started.html'">
-        <span class="glass-shine"></span>
-        <span class="btn-label">Start for Free</span>
+      <button class="btn btn-primary btn-cta" onclick="location.href='get-started.html'">
+        
+        Start for Free
         <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
       </button>
     </div>
@@ -104,8 +103,8 @@
           <li>One‑click accessibility optimisation</li>
         </ul>
         <br>
-        <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
-          <span class="glass-shine"></span><span class="btn-label">Try AI Design Free</span>
+        <button class="btn btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
+          Try AI Design Free
           <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
         </button>
       </div>
@@ -127,8 +126,8 @@
           <li>Role‑based access and permissions</li>
         </ul>
         <br>
-        <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
-          <span class="glass-shine"></span><span class="btn-label">Start Collaborating</span>
+        <button class="btn btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
+          Start Collaborating
           <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
         </button>
       </div>
@@ -164,7 +163,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="logo" style="font-size:18px">
-          <svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>
+          <img src="logo.svg" alt="KIKI" class="logo-svg" style="height:22px;width:auto;">
           KIKI
         </a>
         <p>The next‑generation creative platform. Build beautiful products with AI‑powered design tools.</p>
@@ -189,5 +188,6 @@
 (function(){const c=document.getElementById('particles');const colors=['#3a4bf4','#7b3ff2','#1f8a52','#bff2da','#ddd2fb','#f4a261'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='particle';const s=4+Math.random()*10;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*12}s;animation-duration:${10+Math.random()*14}s;`;c.appendChild(p);}})();
 window.addEventListener('scroll',()=>{document.getElementById('st').classList.toggle('show',window.scrollY>400);});
 </script>
+<script src="api.js"></script>
 </body>
 </html>

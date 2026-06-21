@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 110" fill="none">
+  <defs>
+    <style>.s{stroke:#00BFFF;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}</style>
+  </defs>
+
+  <!-- ═══ K (first letter) ═══ -->
+  <!-- Hourglass outer frame: left vert + top bar + bottom bar + right stubs -->
+  <line class="s" x1="12" y1="8"   x2="12"  y2="102"/>
+  <line class="s" x1="12" y1="8"   x2="74"  y2="8"/>
+  <line class="s" x1="12" y1="102" x2="74"  y2="102"/>
+  <line class="s" x1="74" y1="8"   x2="74"  y2="28"/>
+  <line class="s" x1="74" y1="82"  x2="74"  y2="102"/>
+  <!-- Top-right corner down to waist -->
+  <line class="s" x1="74" y1="8"   x2="12"  y2="55"/>
+  <!-- Bottom-right corner up to waist -->
+  <line class="s" x1="74" y1="102" x2="12"  y2="55"/>
+  <!-- K arm: waist to upper-right -->
+  <line class="s" x1="43" y1="55"  x2="74"  y2="28"/>
+  <!-- K arm: waist to lower-right -->
+  <line class="s" x1="43" y1="55"  x2="74"  y2="82"/>
+
+  <!-- ═══ I (second letter) ═══ -->
+  <!-- Hourglass: top bar + bottom bar + left sides + right sides + diagonals -->
+  <line class="s" x1="94"  y1="8"   x2="148" y2="8"/>
+  <line class="s" x1="94"  y1="102" x2="148" y2="102"/>
+  <line class="s" x1="94"  y1="8"   x2="94"  y2="28"/>
+  <line class="s" x1="94"  y1="82"  x2="94"  y2="102"/>
+  <line class="s" x1="148" y1="8"   x2="148" y2="28"/>
+  <line class="s" x1="148" y1="82"  x2="148" y2="102"/>
+  <!-- Cross diagonals forming hourglass waist -->
+  <line class="s" x1="94"  y1="8"   x2="148" y2="102"/>
+  <line class="s" x1="148" y1="8"   x2="94"  y2="102"/>
+
+  <!-- ═══ K (third letter) ═══ -->
+  <line class="s" x1="170" y1="8"   x2="170" y2="102"/>
+  <line class="s" x1="170" y1="8"   x2="232" y2="8"/>
+  <line class="s" x1="170" y1="102" x2="232" y2="102"/>
+  <line class="s" x1="232" y1="8"   x2="232" y2="28"/>
+  <line class="s" x1="232" y1="82"  x2="232" y2="102"/>
+  <line class="s" x1="232" y1="8"   x2="170" y2="55"/>
+  <line class="s" x1="232" y1="102" x2="170" y2="55"/>
+  <line class="s" x1="201" y1="55"  x2="232" y2="28"/>
+  <line class="s" x1="201" y1="55"  x2="232" y2="82"/>
+
+  <!-- ═══ I (fourth letter) ═══ -->
+  <line class="s" x1="252" y1="8"   x2="306" y2="8"/>
+  <line class="s" x1="252" y1="102" x2="306" y2="102"/>
+  <line class="s" x1="252" y1="8"   x2="252" y2="28"/>
+  <line class="s" x1="252" y1="82"  x2="252" y2="102"/>
+  <line class="s" x1="306" y1="8"   x2="306" y2="28"/>
+  <line class="s" x1="306" y1="82"  x2="306" y2="102"/>
+  <line class="s" x1="252" y1="8"   x2="306" y2="102"/>
+  <line class="s" x1="306" y1="8"   x2="252" y2="102"/>
+</svg>

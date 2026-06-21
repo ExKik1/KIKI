@@ -1,0 +1,97 @@
+# ============================================================
+#  KIKI — Netlify Configuration
+# ============================================================
+
+[build]
+  publish   = "."
+  functions = "netlify/functions"
+  command   = "echo 'Static site — no build step needed'"
+
+# ── Redirect rules ──────────────────────────────────────────
+[[redirects]]
+  from   = "/"
+  to     = "/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/features"
+  to     = "/features.html"
+  status = 200
+
+[[redirects]]
+  from   = "/templates"
+  to     = "/templates.html"
+  status = 200
+
+[[redirects]]
+  from   = "/pricing"
+  to     = "/pricing.html"
+  status = 200
+
+[[redirects]]
+  from   = "/resources"
+  to     = "/resources.html"
+  status = 200
+
+[[redirects]]
+  from   = "/about"
+  to     = "/about.html"
+  status = 200
+
+[[redirects]]
+  from   = "/login"
+  to     = "/login.html"
+  status = 200
+
+[[redirects]]
+  from   = "/get-started"
+  to     = "/get-started.html"
+  status = 200
+
+[[redirects]]
+  from   = "/watch-demo"
+  to     = "/watch-demo.html"
+  status = 200
+
+# ── HTTP Headers ─────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-XSS-Protection       = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin  = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+
+# ── Edge Functions ────────────────────────────────────────────
+[functions]
+  node_bundler = "esbuild"
+
+# ── Environment ───────────────────────────────────────────────
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
