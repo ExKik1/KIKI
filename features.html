@@ -1,110 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KIKI — Features</title>
-  <link rel="stylesheet" href="glass.css" />
-  <style>
-    .page-hero { padding: 160px 0 80px; text-align: center; }
-    .feature-card { padding: 32px; }
-    .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-    .feature-card p  { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
-    .feature-card .tag { margin-bottom: 16px; }
-
-    .big-feature {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-      padding: 64px 0;
-    }
-    .big-feature.reverse { direction: rtl; }
-    .big-feature.reverse > * { direction: ltr; }
-    .big-feature-visual {
-      background: var(--glass-bg);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-      border: 1px solid var(--glass-border);
-      border-radius: 28px;
-      height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    .big-feature-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(167,139,250,0.15), transparent 70%);
-    }
-    .big-feature-content h2 {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .big-feature-content h2 span {
-      background: linear-gradient(135deg,#a78bfa,#60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .big-feature-content p {
-      color: var(--text-secondary);
-      font-size: 16px;
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .compare-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: var(--glass-bg);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-    .compare-table th, .compare-table td {
-      padding: 18px 24px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      font-size: 14px;
-    }
-    .compare-table th {
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      background: rgba(255,255,255,0.04);
-    }
-    .compare-table td { color: var(--text-secondary); }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table .yes { color: #34d399; font-weight: 700; }
-    .compare-table .no  { color: rgba(255,255,255,0.25); }
-
-    @media (max-width: 768px) {
-      .big-feature { grid-template-columns: 1fr; }
-      .big-feature.reverse { direction: ltr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI — Features</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.feat-card { background: #fff; border: 1px solid rgba(0,0,0,.07); border-radius: 20px; padding: 28px; box-shadow: 0 4px 24px rgba(20,20,30,.07); transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; }
+.feat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(20,20,30,.13); }
+.feat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+.feat-icon.blue { background: rgba(58,75,244,.1); }
+.feat-icon.mint { background: #bff2da; }
+.feat-icon.lilac { background: #ddd2fb; }
+.feat-icon.orange { background: #fff0e5; }
+.feat-card h3 { font-size: 17px; font-weight: 800; margin: 0 0 8px; color: #13151f; }
+.feat-card p { font-size: 14px; color: #878f99; line-height: 1.6; margin: 0; font-family: 'Inter',sans-serif; }
+.big-feat { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.big-feat.rev { direction: rtl; }
+.big-feat.rev > * { direction: ltr; }
+.big-feat-visual { background: #fff; border: 1px solid rgba(0,0,0,.07); border-radius: 24px; height: 320px; display: flex; align-items: center; justify-content: center; font-size: 72px; box-shadow: 0 8px 32px rgba(20,20,30,.08); }
+.big-feat-copy h2 { font-size: 34px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.15; margin: 0 0 16px; }
+.big-feat-copy h2 .accent { color: #3a4bf4; }
+.big-feat-copy p { font-size: 16px; color: #878f99; line-height: 1.7; margin: 0 0 24px; font-family: 'Inter',sans-serif; }
+.cmp-table { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; border: 1px solid rgba(0,0,0,.07); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(20,20,30,.07); }
+.cmp-table th, .cmp-table td { padding: 16px 24px; text-align: left; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,.06); }
+.cmp-table th { background: #f8f8fb; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: #aab0ba; }
+.cmp-table td { color: #3c4049; font-family: 'Inter',sans-serif; }
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-yes { color: #1f8a52; font-weight: 700; }
+.cmp-no  { color: #ccc; }
+@media(max-width:768px){ .features-grid,.big-feat{ grid-template-columns:1fr; } .big-feat.rev{ direction:ltr; } }
+</style>
 </head>
 <body>
-  <div class="bg-orbs">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div>
-    <div class="orb orb-3"></div><div class="orb orb-4"></div>
-  </div>
+<div class="particles-container" id="particles"></div>
 
-  <nav class="navbar">
-    <a class="nav-logo" href="index.html">✦ KIKI</a>
+<div class="page">
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>
+      KIKI
+    </a>
     <ul class="nav-links">
       <li><a href="features.html" class="active">Features</a></li>
       <li><a href="templates.html">Templates</a></li>
@@ -113,171 +51,143 @@
       <li><a href="about.html">About Us</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="login.html" class="btn-ghost">Log in</a>
-      <a href="get-started.html" class="btn-primary">Get Started</a>
+      <a href="login.html" class="login-link">Log in</a>
+      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'">
+        <span class="glass-shine"></span><span class="btn-label">Get Started</span>
+      </button>
     </div>
   </nav>
 
-  <div class="page-wrapper">
-    <div class="container">
-
-      <!-- Hero -->
-      <section class="page-hero">
-        <div class="section-badge">⚡ Platform Features</div>
-        <h1 class="section-title">Everything You Need<br/><span>to Build Anything</span></h1>
-        <p class="section-subtitle">Powerful tools designed for modern creators. From AI-powered design to real-time collaboration — KIKI has it all.</p>
-      </section>
-
-      <!-- Feature Grid -->
-      <div class="grid-3">
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-purple">AI-Powered</div>
-          <div class="icon-box icon-box-purple">🤖</div>
-          <h3>AI Design Assistant</h3>
-          <p>Let AI generate, refine, and optimize your designs in seconds. Just describe what you want.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-blue">Collaboration</div>
-          <div class="icon-box icon-box-blue">👥</div>
-          <h3>Real-Time Collaboration</h3>
-          <p>Work together with your team simultaneously. See live cursors, comments, and changes instantly.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-green">Performance</div>
-          <div class="icon-box icon-box-green">⚡</div>
-          <h3>Lightning Fast</h3>
-          <p>Built on edge infrastructure. Sub-100ms response times anywhere in the world.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-pink">Design</div>
-          <div class="icon-box icon-box-pink">🎨</div>
-          <h3>Advanced Design System</h3>
-          <p>Tokens, components, variants — a professional design system built right in.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-orange">Automation</div>
-          <div class="icon-box icon-box-orange">🔄</div>
-          <h3>Smart Automation</h3>
-          <p>Automate repetitive tasks with intelligent workflows. Save hours every week.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-purple">Analytics</div>
-          <div class="icon-box icon-box-purple">📊</div>
-          <h3>Deep Analytics</h3>
-          <p>Understand user behavior with powerful, real-time analytics and heatmaps.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-blue">Export</div>
-          <div class="icon-box icon-box-blue">📤</div>
-          <h3>One-Click Export</h3>
-          <p>Export to any format — PNG, SVG, React, Vue, CSS and more with pixel-perfect output.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-green">Security</div>
-          <div class="icon-box icon-box-green">🔒</div>
-          <h3>Enterprise Security</h3>
-          <p>SOC 2 Type II, GDPR compliant. End-to-end encryption for all your data.</p>
-        </div>
-        <div class="glass-card feature-card fade-in">
-          <div class="tag tag-pink">Integrations</div>
-          <div class="icon-box icon-box-pink">🔌</div>
-          <h3>100+ Integrations</h3>
-          <p>Connect with Slack, GitHub, Figma, Notion, Jira, and dozens more tools.</p>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- Big Feature 1 -->
-      <div class="big-feature fade-in">
-        <div class="big-feature-visual">🤖</div>
-        <div class="big-feature-content">
-          <div class="section-badge">AI Core</div>
-          <h2>AI that <span>understands design</span></h2>
-          <p>Our proprietary AI engine is trained on millions of design patterns. It understands context, branding, and user intent to deliver results that look like they came from a seasoned designer.</p>
-          <ul class="check-list">
-            <li>Generate full UI screens from plain text descriptions</li>
-            <li>Auto-apply brand guidelines across all assets</li>
-            <li>Smart suggestions based on design trends</li>
-            <li>One-click accessibility optimization</li>
-          </ul>
-          <br/>
-          <a href="get-started.html" class="btn-primary">Try AI Design Free →</a>
-        </div>
-      </div>
-
-      <!-- Big Feature 2 -->
-      <div class="big-feature reverse fade-in">
-        <div class="big-feature-visual">🚀</div>
-        <div class="big-feature-content">
-          <div class="section-badge">Collaboration</div>
-          <h2>Build together, <span>ship faster</span></h2>
-          <p>KIKI's multiplayer engine lets entire teams design, prototype, and iterate — all in the same file, at the same time. No more merge conflicts, no more outdated files.</p>
-          <ul class="check-list">
-            <li>Unlimited team members on all paid plans</li>
-            <li>Live commenting and review threads</li>
-            <li>Version history going back 12 months</li>
-            <li>Role-based access and permissions</li>
-          </ul>
-          <br/>
-          <a href="get-started.html" class="btn-primary">Start Collaborating →</a>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- Comparison Table -->
-      <div class="section-header fade-in">
-        <div class="section-badge">Why KIKI?</div>
-        <h2 class="section-title">See How We <span>Compare</span></h2>
-      </div>
-      <table class="compare-table fade-in">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>KIKI</th>
-            <th>Figma</th>
-            <th>Framer</th>
-            <th>Webflow</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>AI Design Generation</td><td class="yes">✓ Native</td><td class="no">— Plugin</td><td class="no">— Limited</td><td class="no">—</td></tr>
-          <tr><td>Real-Time Collaboration</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><td>Code Export (React/Vue)</td><td class="yes">✓</td><td class="no">— Plugin</td><td class="yes">✓</td><td class="no">—</td></tr>
-          <tr><td>Built-in Analytics</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">— Add-on</td></tr>
-          <tr><td>Design Tokens System</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><td>Offline Mode</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
-          <tr><td>Free Tier</td><td class="yes">✓ Generous</td><td class="yes">✓ Limited</td><td class="yes">✓ Limited</td><td class="yes">✓ Limited</td></tr>
-        </tbody>
-      </table>
-
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="eyebrow">⚡ Platform Features</div>
+      <h1>Everything You Need<br>to <span class="accent">Build Anything</span></h1>
+      <p>Powerful tools designed for modern creators. From AI‑powered design to real‑time collaboration — KIKI has it all.</p>
+      <button class="btn btn-primary btn-cta glass-btn glass-btn-primary" onclick="location.href='get-started.html'">
+        <span class="glass-shine"></span>
+        <span class="btn-label">Start for Free</span>
+        <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+      </button>
     </div>
+  </section>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-brand">
-            <a class="nav-logo" href="index.html">✦ KIKI</a>
-            <p>The next generation creative platform. Build beautiful products with AI-powered design tools.</p>
-          </div>
-          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
-          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
-          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2026 KIKI. All rights reserved.</p>
-          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
-        </div>
+  <!-- FEATURE CARDS -->
+  <section class="section" style="padding-top:0">
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon blue">🤖</div><h3>AI Design Assistant</h3><p>Generate, refine, and optimise your designs in seconds. Just describe what you want.</p></div>
+      <div class="feat-card"><div class="feat-icon mint">👥</div><h3>Real‑Time Collaboration</h3><p>Work together simultaneously. See live cursors, comments, and changes instantly.</p></div>
+      <div class="feat-card"><div class="feat-icon lilac">⚡</div><h3>Lightning Fast</h3><p>Built on edge infrastructure. Sub‑100 ms response times anywhere in the world.</p></div>
+      <div class="feat-card"><div class="feat-icon orange">🎨</div><h3>Advanced Design System</h3><p>Tokens, components, variants — a professional design system built right in.</p></div>
+      <div class="feat-card"><div class="feat-icon blue">🔄</div><h3>Smart Automation</h3><p>Automate repetitive tasks with intelligent workflows. Save hours every week.</p></div>
+      <div class="feat-card"><div class="feat-icon mint">📊</div><h3>Deep Analytics</h3><p>Understand user behaviour with powerful, real‑time analytics and heatmaps.</p></div>
+      <div class="feat-card"><div class="feat-icon lilac">📤</div><h3>One‑Click Export</h3><p>Export to any format — PNG, SVG, React, Vue, CSS and more with pixel‑perfect output.</p></div>
+      <div class="feat-card"><div class="feat-icon orange">🔒</div><h3>Enterprise Security</h3><p>SOC 2 Type II, GDPR compliant. End‑to‑end encryption for all your data.</p></div>
+      <div class="feat-card"><div class="feat-icon blue">🔌</div><h3>100+ Integrations</h3><p>Connect with Slack, GitHub, Figma, Notion, Jira, and dozens more tools.</p></div>
+    </div>
+  </section>
+
+  <div class="divider" style="margin:0 64px"></div>
+
+  <!-- BIG FEATURE 1 -->
+  <section class="section">
+    <div class="big-feat">
+      <div class="big-feat-visual">🤖</div>
+      <div class="big-feat-copy">
+        <div class="eyebrow-sm">AI Core</div>
+        <h2>AI that <span class="accent">understands design</span></h2>
+        <p>Our proprietary AI engine is trained on millions of design patterns. It understands context, branding, and user intent to deliver results that look like they came from a seasoned designer.</p>
+        <ul class="check-list">
+          <li>Generate full UI screens from plain‑text descriptions</li>
+          <li>Auto‑apply brand guidelines across all assets</li>
+          <li>Smart suggestions based on design trends</li>
+          <li>One‑click accessibility optimisation</li>
+        </ul>
+        <br>
+        <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
+          <span class="glass-shine"></span><span class="btn-label">Try AI Design Free</span>
+          <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+        </button>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
 
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-  <script>
-    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
-    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+  <!-- BIG FEATURE 2 -->
+  <section class="section" style="padding-top:0">
+    <div class="big-feat rev">
+      <div class="big-feat-visual">🚀</div>
+      <div class="big-feat-copy">
+        <div class="eyebrow-sm">Collaboration</div>
+        <h2>Build together, <span class="accent">ship faster</span></h2>
+        <p>KIKI's multiplayer engine lets entire teams design, prototype, and iterate — all in the same file, at the same time. No more merge conflicts, no more outdated files.</p>
+        <ul class="check-list">
+          <li>Unlimited team members on all paid plans</li>
+          <li>Live commenting and review threads</li>
+          <li>Version history going back 12 months</li>
+          <li>Role‑based access and permissions</li>
+        </ul>
+        <br>
+        <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" style="margin-top:8px;width:fit-content" onclick="location.href='get-started.html'">
+          <span class="glass-shine"></span><span class="btn-label">Start Collaborating</span>
+          <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="margin:0 64px"></div>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section">
+    <div class="section-header">
+      <div class="eyebrow-sm">Why KIKI?</div>
+      <h2>See How We <span class="accent">Compare</span></h2>
+    </div>
+    <table class="cmp-table">
+      <thead>
+        <tr><th>Feature</th><th>KIKI</th><th>Figma</th><th>Framer</th><th>Webflow</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AI Design Generation</td><td class="cmp-yes">✓ Native</td><td class="cmp-no">— Plugin</td><td class="cmp-no">— Limited</td><td class="cmp-no">—</td></tr>
+        <tr><td>Real‑Time Collaboration</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-no">—</td></tr>
+        <tr><td>Code Export (React/Vue)</td><td class="cmp-yes">✓</td><td class="cmp-no">— Plugin</td><td class="cmp-yes">✓</td><td class="cmp-no">—</td></tr>
+        <tr><td>Built‑in Analytics</td><td class="cmp-yes">✓</td><td class="cmp-no">—</td><td class="cmp-no">—</td><td class="cmp-no">— Add‑on</td></tr>
+        <tr><td>Design Tokens System</td><td class="cmp-yes">✓</td><td class="cmp-yes">✓</td><td class="cmp-no">—</td><td class="cmp-no">—</td></tr>
+        <tr><td>Offline Mode</td><td class="cmp-yes">✓</td><td class="cmp-no">—</td><td class="cmp-no">—</td><td class="cmp-no">—</td></tr>
+        <tr><td>Free Tier</td><td class="cmp-yes">✓ Generous</td><td class="cmp-yes">✓ Limited</td><td class="cmp-yes">✓ Limited</td><td class="cmp-yes">✓ Limited</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="font-size:18px">
+          <svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>
+          KIKI
+        </a>
+        <p>The next‑generation creative platform. Build beautiful products with AI‑powered design tools.</p>
+      </div>
+      <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 KIKI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">⌨</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<button class="scroll-top" id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){const c=document.getElementById('particles');const colors=['#3a4bf4','#7b3ff2','#1f8a52','#bff2da','#ddd2fb','#f4a261'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='particle';const s=4+Math.random()*10;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*12}s;animation-duration:${10+Math.random()*14}s;`;c.appendChild(p);}})();
+window.addEventListener('scroll',()=>{document.getElementById('st').classList.toggle('show',window.scrollY>400);});
+</script>
 </body>
 </html>
