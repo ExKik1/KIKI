@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KIKI — Watch Demo</title>
+  <link rel="stylesheet" href="glass.css" />
+  <style>
+    .page-hero { padding: 160px 0 60px; text-align: center; }
+
+    /* Main Video Player */
+    .video-player {
+      max-width: 900px;
+      margin: 0 auto 64px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px var(--glass-border);
+      position: relative;
+      cursor: pointer;
+    }
+    .video-thumbnail {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(167,139,250,0.3), transparent 60%);
+    }
+    .video-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .scene-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      opacity: 0.8;
+    }
+    .play-btn {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-purple);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(124,58,237,0.6), 0 0 0 8px rgba(124,58,237,0.15);
+      transition: all 0.25s;
+      padding-left: 4px;
+      position: relative;
+      z-index: 2;
+      animation: pulse 2s ease infinite;
+    }
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(124,58,237,0.75), 0 0 0 12px rgba(124,58,237,0.2);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 8px 32px rgba(124,58,237,0.6), 0 0 0 8px rgba(124,58,237,0.15); }
+      50%       { box-shadow: 0 8px 32px rgba(124,58,237,0.6), 0 0 0 16px rgba(124,58,237,0.08); }
+    }
+    .video-bar {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .video-progress {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 100px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-purple);
+      border-radius: 100px;
+      transition: width 0.3s;
+    }
+    .video-duration { color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; white-space: nowrap; }
+    .video-controls { display: flex; align-items: center; gap: 10px; }
+    .ctrl-btn { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 18px; cursor: pointer; padding: 0; transition: color 0.2s; }
+    .ctrl-btn:hover { color: white; }
+
+    /* Chapter Playlist */
+    .chapters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 80px;
+    }
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+    }
+    .chapter-item:hover { background: var(--glass-bg-hover); }
+    .chapter-item.active {
+      background: rgba(167,139,250,0.12);
+      border-color: rgba(167,139,250,0.35);
+    }
+    .chapter-num {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: all 0.25s;
+    }
+    .chapter-item.active .chapter-num {
+      background: var(--gradient-purple);
+      border-color: transparent;
+      color: white;
+    }
+    .chapter-info { flex: 1; }
+    .chapter-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .chapter-dur   { font-size: 12px; color: var(--text-muted); }
+
+    /* Feature Highlights */
+    .highlight-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-bottom: 80px; }
+    .highlight-card { padding: 24px; text-align: center; border-radius: 20px; }
+    .highlight-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .highlight-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .highlight-card p  { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* CTA Section */
+    .demo-cta {
+      text-align: center;
+      padding: 64px 0 80px;
+    }
+    .demo-cta h2 { font-size: 40px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px; }
+    .demo-cta h2 span { background: linear-gradient(135deg,#a78bfa,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .demo-cta p { color: var(--text-secondary); font-size: 17px; margin-bottom: 32px; }
+    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    @media (max-width: 768px) {
+      .chapters { grid-template-columns: 1fr; }
+      .highlight-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div>
+    <div class="orb orb-3"></div><div class="orb orb-4"></div>
+  </div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">✦ KIKI</a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="templates.html">Templates</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">Log in</a>
+      <a href="get-started.html" class="btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <section class="page-hero">
+        <div class="section-badge">▶ Product Demo</div>
+        <h1 class="section-title">See KIKI in<br/><span>Action</span></h1>
+        <p class="section-subtitle">Watch how KIKI helps teams design, collaborate, and ship beautiful products — faster than ever.</p>
+      </section>
+
+      <!-- Main Video Player -->
+      <div class="video-player fade-in" id="videoPlayer">
+        <div class="video-thumbnail">
+          <div class="video-scene">
+            <div class="scene-title" id="sceneTitle">✦ KIKI — Full Product Demo</div>
+            <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+          </div>
+        </div>
+        <div class="video-bar">
+          <button class="ctrl-btn" onclick="togglePlay()" id="playIcon">▶</button>
+          <div class="video-progress" onclick="seekVideo(event)">
+            <div class="video-progress-fill" id="progressFill"></div>
+          </div>
+          <span class="video-duration" id="timeDisplay">0:00 / 12:34</span>
+          <div class="video-controls">
+            <button class="ctrl-btn">⛶</button>
+            <button class="ctrl-btn">⋯</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter Playlist -->
+      <h2 style="font-size:22px;font-weight:800;margin-bottom:20px;letter-spacing:-0.5px">📋 Video Chapters</h2>
+      <div class="chapters">
+        <div class="glass-card chapter-item active" onclick="selectChapter(this, '✦ KIKI Overview', '0:00')">
+          <div class="chapter-num">01</div>
+          <div class="chapter-info">
+            <div class="chapter-title">Welcome to KIKI</div>
+            <div class="chapter-dur">⏱ 0:00 — 1:30 · Overview</div>
+          </div>
+        </div>
+        <div class="glass-card chapter-item" onclick="selectChapter(this, '🤖 AI Design Tools', '1:30')">
+          <div class="chapter-num">02</div>
+          <div class="chapter-info">
+            <div class="chapter-title">AI Design Tools</div>
+            <div class="chapter-dur">⏱ 1:30 — 4:00 · Core Feature</div>
+          </div>
+        </div>
+        <div class="glass-card chapter-item" onclick="selectChapter(this, '👥 Real-Time Collaboration', '4:00')">
+          <div class="chapter-num">03</div>
+          <div class="chapter-info">
+            <div class="chapter-title">Real-Time Collaboration</div>
+            <div class="chapter-dur">⏱ 4:00 — 6:15 · Teamwork</div>
+          </div>
+        </div>
+        <div class="glass-card chapter-item" onclick="selectChapter(this, '🎨 Template Library', '6:15')">
+          <div class="chapter-num">04</div>
+          <div class="chapter-info">
+            <div class="chapter-title">Template Library</div>
+            <div class="chapter-dur">⏱ 6:15 — 8:00 · Templates</div>
+          </div>
+        </div>
+        <div class="glass-card chapter-item" onclick="selectChapter(this, '📤 Export & Publish', '8:00')">
+          <div class="chapter-num">05</div>
+          <div class="chapter-info">
+            <div class="chapter-title">Exporting & Publishing</div>
+            <div class="chapter-dur">⏱ 8:00 — 10:20 · Output</div>
+          </div>
+        </div>
+        <div class="glass-card chapter-item" onclick="selectChapter(this, '📊 Analytics Dashboard', '10:20')">
+          <div class="chapter-num">06</div>
+          <div class="chapter-info">
+            <div class="chapter-title">Analytics Dashboard</div>
+            <div class="chapter-dur">⏱ 10:20 — 12:34 · Insights</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlights -->
+      <div class="section-header fade-in">
+        <div class="section-badge">✦ Covered in this Demo</div>
+        <h2 class="section-title">What You'll <span>Learn</span></h2>
+      </div>
+      <div class="highlight-grid">
+        <div class="glass-card highlight-card fade-in">
+          <div class="icon">🤖</div>
+          <h4>AI Generation</h4>
+          <p>Generate full UI screens from a single sentence description.</p>
+        </div>
+        <div class="glass-card highlight-card fade-in">
+          <div class="icon">⚡</div>
+          <h4>Fast Setup</h4>
+          <p>Go from blank canvas to complete design in under 5 minutes.</p>
+        </div>
+        <div class="glass-card highlight-card fade-in">
+          <div class="icon">🎨</div>
+          <h4>Design System</h4>
+          <p>Build consistent, scalable design systems with tokens and components.</p>
+        </div>
+        <div class="glass-card highlight-card fade-in">
+          <div class="icon">📱</div>
+          <h4>Responsive Design</h4>
+          <p>Auto-generate mobile, tablet, and desktop layouts simultaneously.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="demo-cta fade-in">
+        <h2>Ready to <span>get started?</span></h2>
+        <p>Join 50,000+ creators building with KIKI today. It's free.</p>
+        <div class="cta-btns">
+          <a href="get-started.html" class="btn-primary btn-large">🚀 Get Started Free</a>
+          <a href="features.html" class="btn-secondary btn-large">Explore Features →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand"><a class="nav-logo" href="index.html">✦ KIKI</a><p>The next generation creative platform.</p></div>
+          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 KIKI. All rights reserved.</p>
+          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    let playing = false;
+    let progress = 0;
+    let timer = null;
+
+    function togglePlay() {
+      playing = !playing;
+      document.getElementById('playBtn').textContent = playing ? '⏸' : '▶';
+      document.getElementById('playIcon').textContent = playing ? '⏸' : '▶';
+      if (playing) {
+        timer = setInterval(() => {
+          progress = Math.min(progress + 0.13, 100);
+          document.getElementById('progressFill').style.width = progress + '%';
+          const total = 754; // 12:34 in seconds
+          const current = Math.floor(total * progress / 100);
+          const m = Math.floor(current / 60), s = current % 60;
+          document.getElementById('timeDisplay').textContent = `${m}:${s.toString().padStart(2,'0')} / 12:34`;
+          if (progress >= 100) { clearInterval(timer); playing = false; document.getElementById('playBtn').textContent = '▶'; document.getElementById('playIcon').textContent = '▶'; }
+        }, 200);
+      } else {
+        clearInterval(timer);
+      }
+    }
+
+    function seekVideo(e) {
+      const bar = e.currentTarget;
+      const rect = bar.getBoundingClientRect();
+      progress = ((e.clientX - rect.left) / rect.width) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function selectChapter(el, title, time) {
+      document.querySelectorAll('.chapter-item').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('sceneTitle').textContent = title;
+      if (playing) { clearInterval(timer); playing = false; document.getElementById('playBtn').textContent = '▶'; document.getElementById('playIcon').textContent = '▶'; }
+      progress = 0;
+      document.getElementById('progressFill').style.width = '0%';
+      document.getElementById('timeDisplay').textContent = time + ' / 12:34';
+    }
+
+    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
+    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

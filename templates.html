@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KIKI — Templates</title>
+  <link rel="stylesheet" href="glass.css" />
+  <style>
+    .page-hero { padding: 160px 0 60px; text-align: center; }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      padding: 9px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(167,139,250,0.2);
+      border-color: rgba(167,139,250,0.4);
+      color: #a78bfa;
+    }
+
+    /* Template Cards */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .template-card {
+      border-radius: 24px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .template-card:hover { transform: translateY(-6px); }
+    .template-preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .template-preview::after {
+      content: 'Use Template →';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .template-card:hover .template-preview::after { opacity: 1; }
+    .template-info {
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-top: none;
+      padding: 20px 22px;
+    }
+    .template-info .template-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .template-info .template-desc { color: var(--text-secondary); font-size: 13px; margin-bottom: 12px; }
+    .template-meta { display: flex; align-items: center; justify-content: space-between; }
+    .template-meta .price { font-weight: 700; font-size: 15px; }
+    .template-meta .price.free { color: #34d399; }
+    .template-meta .price.paid { background: linear-gradient(135deg,#a78bfa,#60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .template-stars { color: #fbbf24; font-size: 13px; }
+
+    /* Category Header */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 64px 0 28px;
+    }
+    .cat-header h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+    .cat-line { flex: 1; height: 1px; background: var(--glass-border); }
+
+    @media (max-width: 768px) {
+      .templates-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) {
+      .templates-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div>
+    <div class="orb orb-3"></div><div class="orb orb-4"></div>
+  </div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">✦ KIKI</a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="templates.html" class="active">Templates</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">Log in</a>
+      <a href="get-started.html" class="btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <section class="page-hero">
+        <div class="section-badge">🎨 Template Library</div>
+        <h1 class="section-title">200+ Beautiful<br/><span>Templates</span></h1>
+        <p class="section-subtitle">Professional, pixel-perfect templates for every use case. Start with a template, customize to make it yours.</p>
+      </section>
+
+      <!-- Filter -->
+      <div class="filter-bar">
+        <button class="filter-btn active">All Templates</button>
+        <button class="filter-btn">Landing Pages</button>
+        <button class="filter-btn">Dashboards</button>
+        <button class="filter-btn">Mobile Apps</button>
+        <button class="filter-btn">Marketing</button>
+        <button class="filter-btn">SaaS</button>
+        <button class="filter-btn">Portfolio</button>
+        <button class="filter-btn">E-commerce</button>
+      </div>
+
+      <!-- Landing Pages -->
+      <div class="cat-header fade-in">
+        <h2>🌐 Landing Pages</h2>
+        <div class="cat-line"></div>
+        <span class="tag tag-purple">42 templates</span>
+      </div>
+      <div class="templates-grid">
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#667eea,#764ba2)">🚀</div>
+          <div class="template-info">
+            <div class="template-name">SaaS Launch Pro</div>
+            <div class="template-desc">Modern SaaS landing page with hero, features, and pricing sections.</div>
+            <div class="template-meta">
+              <span class="price free">Free</span>
+              <span class="template-stars">★★★★★ 4.9</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#f093fb,#f5576c)">🎯</div>
+          <div class="template-info">
+            <div class="template-name">Agency Glow</div>
+            <div class="template-desc">Creative agency landing page with bold typography and animations.</div>
+            <div class="template-meta">
+              <span class="price paid">$29</span>
+              <span class="template-stars">★★★★★ 4.8</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">💎</div>
+          <div class="template-info">
+            <div class="template-name">Minimal Product</div>
+            <div class="template-desc">Clean, minimal product showcase with elegant transitions.</div>
+            <div class="template-meta">
+              <span class="price paid">$19</span>
+              <span class="template-stars">★★★★☆ 4.6</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Dashboards -->
+      <div class="cat-header fade-in">
+        <h2>📊 Dashboards</h2>
+        <div class="cat-line"></div>
+        <span class="tag tag-blue">36 templates</span>
+      </div>
+      <div class="templates-grid">
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#0f0c29,#302b63)">📈</div>
+          <div class="template-info">
+            <div class="template-name">Analytics Dark</div>
+            <div class="template-desc">Dark analytics dashboard with charts, KPIs, and data tables.</div>
+            <div class="template-meta">
+              <span class="price free">Free</span>
+              <span class="template-stars">★★★★★ 5.0</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">🏦</div>
+          <div class="template-info">
+            <div class="template-name">Finance Tracker</div>
+            <div class="template-desc">Personal finance dashboard with budget tracking and insights.</div>
+            <div class="template-meta">
+              <span class="price paid">$39</span>
+              <span class="template-stars">★★★★★ 4.9</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#fa709a,#fee140)">🎮</div>
+          <div class="template-info">
+            <div class="template-name">Gaming Stats</div>
+            <div class="template-desc">Vibrant gaming dashboard with leaderboards and achievements.</div>
+            <div class="template-meta">
+              <span class="price paid">$24</span>
+              <span class="template-stars">★★★★☆ 4.7</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile Apps -->
+      <div class="cat-header fade-in">
+        <h2>📱 Mobile Apps</h2>
+        <div class="cat-line"></div>
+        <span class="tag tag-pink">58 templates</span>
+      </div>
+      <div class="templates-grid">
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">🧘</div>
+          <div class="template-info">
+            <div class="template-name">Wellness App</div>
+            <div class="template-desc">Health & wellness mobile UI with soft gradients and clean layout.</div>
+            <div class="template-meta">
+              <span class="price free">Free</span>
+              <span class="template-stars">★★★★★ 4.9</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#fccb90,#d57eeb)">🛍️</div>
+          <div class="template-info">
+            <div class="template-name">Shop UI Kit</div>
+            <div class="template-desc">Complete e-commerce mobile UI with cart, checkout, and product pages.</div>
+            <div class="template-meta">
+              <span class="price paid">$49</span>
+              <span class="template-stars">★★★★★ 4.8</span>
+            </div>
+          </div>
+        </a>
+        <a href="get-started.html" class="template-card fade-in">
+          <div class="template-preview" style="background:linear-gradient(135deg,#30cfd0,#330867)">💬</div>
+          <div class="template-info">
+            <div class="template-name">Chat Messenger</div>
+            <div class="template-desc">Modern messaging app UI with dark theme and glassmorphism.</div>
+            <div class="template-meta">
+              <span class="price paid">$29</span>
+              <span class="template-stars">★★★★☆ 4.6</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center; padding: 80px 0 40px;">
+        <div class="glass-card-strong" style="display:inline-block;padding:48px 64px;border-radius:32px">
+          <div class="section-badge" style="margin-bottom:20px">🎨 All Templates</div>
+          <h2 style="font-size:32px;font-weight:800;margin-bottom:12px">Can't find what you need?</h2>
+          <p style="color:var(--text-secondary);margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto">Let our AI generate a custom template based on your description in seconds.</p>
+          <a href="get-started.html" class="btn-primary btn-large">✨ Generate with AI</a>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand"><a class="nav-logo" href="index.html">✦ KIKI</a><p>The next generation creative platform.</p></div>
+          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 KIKI. All rights reserved.</p>
+          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
+    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
