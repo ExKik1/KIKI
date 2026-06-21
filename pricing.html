@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KIKI — Pricing</title>
+  <link rel="stylesheet" href="glass.css" />
+  <style>
+    .page-hero { padding: 160px 0 60px; text-align: center; }
+
+    /* Toggle */
+    .billing-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 6px 6px 6px 20px;
+      margin-bottom: 60px;
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .billing-toggle span { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+    .toggle-switch {
+      width: 44px; height: 26px;
+      background: var(--gradient-purple);
+      border-radius: 100px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 3px; left: 3px;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .toggle-switch.annual::after { transform: translateX(18px); }
+    .save-badge {
+      background: rgba(52,211,153,0.15);
+      border: 1px solid rgba(52,211,153,0.3);
+      color: #34d399;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+    .pricing-card {
+      padding: 36px 32px;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card.popular {
+      background: rgba(167,139,250,0.12);
+      border-color: rgba(167,139,250,0.4);
+      box-shadow: 0 0 60px rgba(167,139,250,0.2), var(--glass-shadow);
+    }
+    .popular-badge {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--gradient-purple);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+    .plan-name { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+    .plan-price {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .plan-price .currency { font-size: 22px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; }
+    .plan-price .amount {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+    .plan-price .period { font-size: 15px; color: var(--text-muted); margin-bottom: 8px; }
+    .plan-desc { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--glass-border); }
+    .plan-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-feature { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+    .plan-feature .check { color: #34d399; font-weight: 700; font-size: 13px; }
+    .plan-feature .cross { color: rgba(255,255,255,0.2); font-size: 15px; }
+    .plan-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      transition: all 0.25s;
+    }
+    .plan-btn-ghost {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+    }
+    .plan-btn-ghost:hover { background: var(--glass-bg-hover); }
+    .plan-btn-primary {
+      background: var(--gradient-purple);
+      border: none;
+      color: white;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+    }
+    .plan-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(124,58,237,0.55); }
+
+    /* FAQ */
+    .faq-item {
+      padding: 22px 28px;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .faq-icon { font-size: 20px; transition: transform 0.2s; color: var(--text-muted); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: #a78bfa; }
+    .faq-a {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 14px; }
+
+    @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div>
+    <div class="orb orb-3"></div><div class="orb orb-4"></div>
+  </div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">✦ KIKI</a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="templates.html">Templates</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">Log in</a>
+      <a href="get-started.html" class="btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <section class="page-hero">
+        <div class="section-badge">💰 Simple Pricing</div>
+        <h1 class="section-title">Plans for Every<br/><span>Team & Budget</span></h1>
+        <p class="section-subtitle">No hidden fees. No surprises. Start free, scale when you're ready.</p>
+
+        <!-- Toggle -->
+        <div style="margin-top:32px">
+          <div class="billing-toggle">
+            <span>Monthly</span>
+            <div class="toggle-switch annual" id="billingToggle" onclick="this.classList.toggle('annual'); togglePricing()"></div>
+            <span>Annual</span>
+            <span class="save-badge">Save 40%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Cards -->
+      <div class="pricing-grid">
+
+        <!-- Free -->
+        <div class="glass-card pricing-card fade-in">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="0" data-annual="0">0</span>
+            <span class="period">/mo</span>
+          </div>
+          <div class="plan-desc">Perfect for individuals and side projects. Get started with no credit card required.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="check">✓</span> 3 active projects</div>
+            <div class="plan-feature"><span class="check">✓</span> 5GB storage</div>
+            <div class="plan-feature"><span class="check">✓</span> 20 free templates</div>
+            <div class="plan-feature"><span class="check">✓</span> Basic AI (50 generations/mo)</div>
+            <div class="plan-feature"><span class="check">✓</span> Community support</div>
+            <div class="plan-feature"><span class="cross">✗</span> Team collaboration</div>
+            <div class="plan-feature"><span class="cross">✗</span> Custom domain</div>
+            <div class="plan-feature"><span class="cross">✗</span> Advanced analytics</div>
+          </div>
+          <a href="get-started.html" class="plan-btn plan-btn-ghost">Get Started Free</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="glass-card pricing-card popular fade-in">
+          <div class="popular-badge">Most Popular ✦</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="29" data-annual="17">17</span>
+            <span class="period">/mo</span>
+          </div>
+          <div class="plan-desc">For professional creators and small teams who need power and flexibility.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="check">✓</span> Unlimited projects</div>
+            <div class="plan-feature"><span class="check">✓</span> 100GB storage</div>
+            <div class="plan-feature"><span class="check">✓</span> All 200+ templates</div>
+            <div class="plan-feature"><span class="check">✓</span> Unlimited AI generations</div>
+            <div class="plan-feature"><span class="check">✓</span> Team collaboration (5 seats)</div>
+            <div class="plan-feature"><span class="check">✓</span> Custom domain</div>
+            <div class="plan-feature"><span class="check">✓</span> Advanced analytics</div>
+            <div class="plan-feature"><span class="check">✓</span> Priority support</div>
+          </div>
+          <a href="get-started.html" class="plan-btn plan-btn-primary">Start Pro Trial →</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="glass-card pricing-card fade-in">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="99" data-annual="59">59</span>
+            <span class="period">/mo</span>
+          </div>
+          <div class="plan-desc">For large teams and organizations with advanced security and compliance needs.</div>
+          <div class="plan-features">
+            <div class="plan-feature"><span class="check">✓</span> Everything in Pro</div>
+            <div class="plan-feature"><span class="check">✓</span> Unlimited seats</div>
+            <div class="plan-feature"><span class="check">✓</span> 1TB storage</div>
+            <div class="plan-feature"><span class="check">✓</span> SSO / SAML</div>
+            <div class="plan-feature"><span class="check">✓</span> SOC 2 / GDPR compliance</div>
+            <div class="plan-feature"><span class="check">✓</span> Dedicated account manager</div>
+            <div class="plan-feature"><span class="check">✓</span> SLA 99.99% uptime</div>
+            <div class="plan-feature"><span class="check">✓</span> 24/7 phone support</div>
+          </div>
+          <a href="get-started.html" class="plan-btn plan-btn-ghost">Contact Sales →</a>
+        </div>
+
+      </div>
+
+      <!-- Trust Badges -->
+      <div style="text-align:center; margin-bottom: 80px;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px">🔒 SSL Encrypted</div>
+          <div style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px">💳 No Credit Card Required</div>
+          <div style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px">↩️ 30-day Money Back</div>
+          <div style="display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:14px">🚫 Cancel Anytime</div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section-header fade-in">
+        <div class="section-badge">❓ FAQ</div>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+      </div>
+
+      <div style="max-width:720px;margin:0 auto 80px">
+        <div class="glass-card faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Can I switch plans at any time? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately and we'll prorate any billing differences.</div>
+        </div>
+        <div class="glass-card faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-q">What happens to my data if I cancel? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Your data stays safe for 30 days after cancellation. You can export everything before your account is deactivated. We never delete your data without notice.</div>
+        </div>
+        <div class="glass-card faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Do you offer student or nonprofit discounts? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes! We offer 50% off for verified students and 70% off for eligible nonprofits. Contact our support team with proof of eligibility.</div>
+        </div>
+        <div class="glass-card faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Is there a free trial for Pro and Enterprise? <span class="faq-icon">+</span></div>
+          <div class="faq-a">Absolutely. All paid plans come with a full 14-day free trial. No credit card required to start. You'll only be billed after the trial ends.</div>
+        </div>
+        <div class="glass-card faq-item fade-in" onclick="this.classList.toggle('open')">
+          <div class="faq-q">What payment methods do you accept? <span class="faq-icon">+</span></div>
+          <div class="faq-a">We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and bank transfers for Enterprise plans. All transactions are secured by Stripe.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand"><a class="nav-logo" href="index.html">✦ KIKI</a><p>The next generation creative platform.</p></div>
+          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 KIKI. All rights reserved.</p>
+          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+    let isAnnual = true;
+    function togglePricing() {
+      isAnnual = !isAnnual;
+      document.querySelectorAll('.amount').forEach(el => {
+        el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+      });
+    }
+    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
+    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

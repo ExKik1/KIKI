@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KIKI — About Us</title>
+  <link rel="stylesheet" href="glass.css" />
+  <style>
+    .page-hero { padding: 160px 0 80px; text-align: center; }
+
+    /* Mission */
+    .mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 60px 0;
+    }
+    .mission-visual {
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.2), transparent 60%);
+    }
+    .mission-text h2 { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1.2; margin-bottom: 20px; }
+    .mission-text h2 span { background: linear-gradient(135deg,#a78bfa,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .mission-text p { color: var(--text-secondary); font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 48px 0;
+    }
+    .stat-card { padding: 32px 24px; text-align: center; border-radius: 22px; }
+
+    /* Team */
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .team-card { padding: 32px; text-align: center; border-radius: 24px; }
+    .team-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      border: 2px solid var(--glass-border);
+    }
+    .team-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .team-role { color: #a78bfa; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+    .team-bio  { color: var(--text-secondary); font-size: 13px; line-height: 1.6; }
+    .team-links { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+
+    /* Values */
+    .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .value-card { padding: 28px; border-radius: 22px; display: flex; gap: 18px; }
+    .value-icon { font-size: 28px; flex-shrink: 0; }
+    .value-content h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .value-content p  { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #a78bfa, #60a5fa, #f472b6);
+      border-radius: 2px;
+    }
+    .timeline-item { position: relative; padding: 0 0 40px 28px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #a78bfa;
+      border: 2px solid rgba(167,139,250,0.3);
+      box-shadow: 0 0 12px rgba(167,139,250,0.5);
+    }
+    .timeline-year { color: #a78bfa; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .timeline-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .timeline-desc  { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .mission, .values-grid { grid-template-columns: 1fr; }
+      .stats-row, .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div>
+    <div class="orb orb-3"></div><div class="orb orb-4"></div>
+  </div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">✦ KIKI</a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="templates.html">Templates</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">Log in</a>
+      <a href="get-started.html" class="btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <section class="page-hero">
+        <div class="section-badge">🌟 Our Story</div>
+        <h1 class="section-title">Built by Creators,<br/><span>for Creators</span></h1>
+        <p class="section-subtitle">We're a team of designers, engineers, and dreamers on a mission to make powerful creative tools accessible to everyone.</p>
+      </section>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="glass-card stat-card fade-in">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Active Creators</div>
+        </div>
+        <div class="glass-card stat-card fade-in">
+          <div class="stat-number">120+</div>
+          <div class="stat-label">Countries Reached</div>
+        </div>
+        <div class="glass-card stat-card fade-in">
+          <div class="stat-number">4M+</div>
+          <div class="stat-label">Projects Created</div>
+        </div>
+        <div class="glass-card stat-card fade-in">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Mission -->
+      <div class="mission fade-in">
+        <div class="mission-visual">🎯</div>
+        <div class="mission-text">
+          <div class="section-badge" style="margin-bottom:16px">Our Mission</div>
+          <h2>Empowering <span>creativity</span> at every level</h2>
+          <p>KIKI started with a simple belief: great design tools shouldn't be locked behind steep learning curves or enterprise price tags. Every creator deserves access to professional-grade tools.</p>
+          <p>We're building the platform we always wished existed — one that combines the power of AI with the simplicity of consumer apps and the depth of professional software.</p>
+          <a href="get-started.html" class="btn-primary" style="margin-top:8px;width:fit-content">Join Us Today →</a>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Values -->
+      <div class="section-header fade-in">
+        <div class="section-badge">💡 What We Believe</div>
+        <h2 class="section-title">Our Core <span>Values</span></h2>
+      </div>
+      <div class="values-grid">
+        <div class="glass-card value-card fade-in">
+          <div class="value-icon">🚀</div>
+          <div class="value-content">
+            <h3>Speed over perfection</h3>
+            <p>We ship fast, learn from users, and iterate relentlessly. Progress beats polish in early stages.</p>
+          </div>
+        </div>
+        <div class="glass-card value-card fade-in">
+          <div class="value-icon">🌍</div>
+          <div class="value-content">
+            <h3>Accessibility first</h3>
+            <p>Great tools should be available to creators everywhere, regardless of budget or technical background.</p>
+          </div>
+        </div>
+        <div class="glass-card value-card fade-in">
+          <div class="value-icon">🤝</div>
+          <div class="value-content">
+            <h3>Community-driven</h3>
+            <p>Our users shape our roadmap. Every feature we build comes from real feedback and real needs.</p>
+          </div>
+        </div>
+        <div class="glass-card value-card fade-in">
+          <div class="value-icon">🔒</div>
+          <div class="value-content">
+            <h3>Privacy & trust</h3>
+            <p>Your data belongs to you. We'll never sell it, never abuse it, and always be transparent about how we use it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Team -->
+      <div class="section-header fade-in">
+        <div class="section-badge">👥 The Team</div>
+        <h2 class="section-title">Meet the <span>People</span></h2>
+      </div>
+      <div class="team-grid">
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(167,139,250,0.15)">👩‍💻</div>
+          <div class="team-name">Aria Chen</div>
+          <div class="team-role">Co-Founder & CEO</div>
+          <div class="team-bio">Former lead designer at Apple. 12 years building products used by millions. Obsessed with AI and the future of creativity.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">in</a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(96,165,250,0.15)">👨‍🔬</div>
+          <div class="team-name">Marcus Kim</div>
+          <div class="team-role">Co-Founder & CTO</div>
+          <div class="team-bio">Ex-Google Brain researcher. Built AI systems processing billions of requests/day. Loves distributed systems and coffee.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">⌨</a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(244,114,182,0.15)">👩‍🎨</div>
+          <div class="team-name">Sofia Reyes</div>
+          <div class="team-role">Head of Design</div>
+          <div class="team-bio">Award-winning product designer. Previously at Figma and Linear. Believes every pixel has a purpose.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">in</a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(52,211,153,0.15)">👨‍💼</div>
+          <div class="team-name">James Okafor</div>
+          <div class="team-role">Head of Growth</div>
+          <div class="team-bio">Scaled 3 startups from 0 to 100K users. Data-driven marketer who loves building genuine communities.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">in</a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(251,146,60,0.15)">👩‍🔧</div>
+          <div class="team-name">Yuki Tanaka</div>
+          <div class="team-role">Lead Engineer</div>
+          <div class="team-bio">Full-stack wizard. Built the real-time collaboration engine from scratch. Speaks fluent TypeScript and Rust.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">⌨</a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-in">
+          <div class="team-avatar" style="background:rgba(167,139,250,0.15)">👨‍🎤</div>
+          <div class="team-name">Leo Müller</div>
+          <div class="team-role">Head of Community</div>
+          <div class="team-bio">Community builder and educator. Runs our YouTube channel, tutorials, and Discord with 15K+ members.</div>
+          <div class="team-links">
+            <a class="social-btn" href="#">𝕏</a>
+            <a class="social-btn" href="#">in</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Timeline -->
+      <div class="section-header fade-in">
+        <div class="section-badge">📅 Our Journey</div>
+        <h2 class="section-title">The KIKI <span>Story</span></h2>
+      </div>
+
+      <div style="max-width:640px; margin: 0 auto 80px;">
+        <div class="timeline">
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2023 — Founded</div>
+            <div class="timeline-title">KIKI is born in a San Francisco apartment</div>
+            <div class="timeline-desc">Aria and Marcus build the first prototype over a weekend hackathon. The core idea: AI-native design for everyone.</div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2024 — Early Access</div>
+            <div class="timeline-title">First 1,000 beta users & $3M seed round</div>
+            <div class="timeline-desc">Overwhelming response from the design community. Raised seed funding to grow the team to 8 people.</div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2025 — Launch</div>
+            <div class="timeline-title">Public launch — 10K users in 48 hours</div>
+            <div class="timeline-desc">Product Hunt #1 of the day. Team expands to 18 people. Series A round of $18M closed.</div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2026 — KIKI v2.0</div>
+            <div class="timeline-title">Complete rebuild with iOS 27 design & new AI engine</div>
+            <div class="timeline-desc">50K+ active users, 120 countries, and the most powerful creative platform on the web. This is just the beginning.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;padding:0 0 80px;">
+        <h2 style="font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:12px">Want to join our team?</h2>
+        <p style="color:var(--text-secondary);margin-bottom:28px;font-size:16px">We're always looking for talented people who share our passion for building great products.</p>
+        <a href="get-started.html" class="btn-primary btn-large">🌟 View Open Roles</a>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-brand"><a class="nav-logo" href="index.html">✦ KIKI</a><p>The next generation creative platform.</p></div>
+          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 KIKI. All rights reserved.</p>
+          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
+    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
