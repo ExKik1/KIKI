@@ -1,406 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KIKI — Get Started Free</title>
-  <link rel="stylesheet" href="glass.css" />
-  <style>
-    body { display: flex; min-height: 100vh; }
-
-    .signup-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Left: Visual */
-    .signup-left {
-      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(219,39,119,0.15), rgba(37,99,235,0.15));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 60px 52px;
-      position: relative;
-      overflow: hidden;
-    }
-    .signup-left::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 10%; bottom: 10%;
-      width: 1px;
-      background: var(--glass-border);
-    }
-    .signup-left::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 40%, rgba(167,139,250,0.3), transparent 50%);
-    }
-
-    .signup-logo {
-      position: absolute;
-      top: 40px; left: 48px;
-      font-size: 22px;
-      font-weight: 800;
-      background: linear-gradient(135deg,#a78bfa,#60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-    }
-
-    .signup-pitch {
-      position: relative;
-      z-index: 1;
-    }
-    .signup-pitch h2 { font-size: 40px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 16px; }
-    .signup-pitch h2 span { background: linear-gradient(135deg,#a78bfa,#f472b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .signup-pitch p { color: var(--text-secondary); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
-    .perks { display: flex; flex-direction: column; gap: 14px; }
-    .perk { display: flex; align-items: center; gap: 14px; }
-    .perk-icon {
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      background: var(--glass-bg-strong);
-      border: 1px solid var(--glass-border);
-      display: flex; align-items:center; justify-content:center;
-      font-size: 18px;
-      flex-shrink: 0;
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-    }
-    .perk-text .perk-title { font-size: 15px; font-weight: 700; }
-    .perk-text .perk-desc  { font-size: 13px; color: var(--text-secondary); }
-
-    .left-logos {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-top: 36px;
-      flex-wrap: wrap;
-    }
-    .left-logos p { color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-    .logo-pill {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 600;
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-    }
-
-    /* Right: Form */
-    .signup-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 72px;
-    }
-
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 36px;
-    }
-    .step {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .step-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      display: flex; align-items:center; justify-content:center;
-      font-size: 12px;
-      font-weight: 700;
-      border: 2px solid var(--glass-border);
-      color: var(--text-muted);
-      transition: all 0.3s;
-    }
-    .step.active .step-num {
-      background: var(--gradient-purple);
-      border-color: transparent;
-      color: white;
-      box-shadow: 0 0 12px rgba(124,58,237,0.4);
-    }
-    .step.done .step-num {
-      background: rgba(52,211,153,0.2);
-      border-color: rgba(52,211,153,0.4);
-      color: #34d399;
-    }
-    .step-label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
-    .step.active .step-label { color: var(--text-primary); }
-    .step-line { flex: 1; height: 2px; background: var(--glass-border); margin: 0 12px; max-width: 40px; }
-
-    .form-title  { font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px; }
-    .form-title span { background: linear-gradient(135deg,#a78bfa,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .form-sub    { color: var(--text-secondary); font-size: 15px; margin-bottom: 30px; }
-
-    .social-logins { display: flex; gap: 10px; margin-bottom: 24px; }
-    .social-login-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 16px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 14px;
-      color: var(--text-primary);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.25s;
-      text-decoration: none;
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-    }
-    .social-login-btn:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-strong); }
-
-    .divider-or { display: flex; align-items: center; gap: 16px; margin: 20px 0; color: var(--text-muted); font-size: 13px; }
-    .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
-
-    .signup-form  { display: flex; flex-direction: column; gap: 14px; }
-    .form-group   { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
-    .form-row-2   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .input-password { position: relative; }
-    .input-password input { padding-right: 48px; }
-    .toggle-pw { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; transition: color 0.2s; }
-    .toggle-pw:hover { color: var(--text-primary); }
-
-    .terms {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--text-secondary);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-    .terms input { margin-top: 2px; accent-color: #a78bfa; flex-shrink: 0; cursor: pointer; }
-    .terms a { color: #a78bfa; text-decoration: none; }
-    .terms a:hover { text-decoration: underline; }
-
-    .btn-signup {
-      width: 100%;
-      padding: 15px;
-      background: var(--gradient-purple);
-      border: none;
-      border-radius: 14px;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.25s;
-      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
-    }
-    .btn-signup:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(124,58,237,0.55); filter: brightness(1.1); }
-
-    .login-link { text-align: center; margin-top: 18px; color: var(--text-secondary); font-size: 14px; }
-    .login-link a { color: #a78bfa; text-decoration: none; font-weight: 600; }
-
-    /* Success Screen */
-    .success-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-      padding: 40px 0;
-    }
-    .success-icon { font-size: 72px; animation: popIn 0.5s ease; }
-    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .success-title { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
-    .success-title span { background: linear-gradient(135deg,#34d399,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .success-sub { color: var(--text-secondary); font-size: 16px; line-height: 1.7; max-width: 360px; }
-
-    @media (max-width: 768px) {
-      .signup-layout { grid-template-columns: 1fr; }
-      .signup-left   { display: none; }
-      .signup-right  { padding: 100px 24px 60px; }
-      .form-row-2    { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI — Get Started Free</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body{display:flex;min-height:100vh;}
+.gs-layout{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;width:100%;position:relative;z-index:1;}
+.gs-left{background:linear-gradient(145deg,#f0f1f3 0%,#e8eaff 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 64px;position:relative;overflow:hidden;}
+.gs-left::before{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(58,75,244,.1),transparent 65%);top:-100px;right:-100px;}
+.gs-left::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:rgba(0,0,0,.07);}
+.gs-logo-wrap{position:absolute;top:36px;left:48px;}
+.gs-pitch h2{font-size:38px;font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin:0 0 14px;position:relative;z-index:1;}
+.gs-pitch h2 .accent{color:#3a4bf4;}
+.gs-pitch>p{font-size:16px;color:#878f99;font-family:'Inter',sans-serif;line-height:1.7;margin:0 0 28px;position:relative;z-index:1;}
+.perks{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+.perk{display:flex;align-items:center;gap:14px;}
+.perk-icon{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 2px 12px rgba(20,20,30,.06);}
+.perk-title{font-size:14px;font-weight:800;}
+.perk-desc{font-size:12.5px;color:#878f99;font-family:'Inter',sans-serif;}
+.trust-logos{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:32px;position:relative;z-index:1;}
+.trust-logos p{color:#aab0ba;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.logo-pill{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;color:#878f99;}
+.gs-right{display:flex;flex-direction:column;justify-content:center;padding:80px 64px;}
+.steps{display:flex;align-items:center;gap:0;margin-bottom:36px;}
+.step{display:flex;align-items:center;gap:8px;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid rgba(0,0,0,.12);color:#aab0ba;transition:all .3s;}
+.step.active .step-num{background:#3a4bf4;border-color:#3a4bf4;color:#fff;box-shadow:0 0 12px rgba(58,75,244,.35);}
+.step.done .step-num{background:#bff2da;border-color:#bff2da;color:#1f8a52;}
+.step-label{font-size:12px;font-weight:700;color:#aab0ba;}
+.step.active .step-label{color:#13151f;}
+.step-line{flex:1;height:2px;background:rgba(0,0,0,.08);margin:0 10px;max-width:36px;}
+.form-title{font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:6px;line-height:1.1;}
+.form-title .accent{color:#3a4bf4;}
+.form-sub{color:#878f99;font-size:15px;font-family:'Inter',sans-serif;margin-bottom:28px;}
+.social-btns-row{display:flex;gap:10px;margin-bottom:20px;}
+.social-btn-half{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;color:#13151f;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;text-decoration:none;}
+.social-btn-half:hover{border-color:#3a4bf4;color:#3a4bf4;}
+.or-divider{display:flex;align-items:center;gap:14px;margin:16px 0;color:#aab0ba;font-size:13px;}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.08);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.form-group label{font-size:12.5px;font-weight:700;color:#3c4049;}
+.pw-wrap{position:relative;}
+.pw-wrap input{padding-right:44px;}
+.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:#aab0ba;cursor:pointer;font-size:16px;padding:0;}
+.terms-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;font-size:13px;color:#878f99;font-family:'Inter',sans-serif;line-height:1.5;}
+.terms-row input{margin-top:2px;accent-color:#3a4bf4;flex-shrink:0;cursor:pointer;}
+.terms-row a{color:#3a4bf4;text-decoration:none;}
+.submit-btn{width:100%;padding:15px;background:#3a4bf4;border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .25s;box-shadow:0 4px 16px rgba(58,75,244,.4);}
+.submit-btn:hover{background:#2c3bd9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(58,75,244,.5);}
+.login-link-row{text-align:center;margin-top:16px;color:#878f99;font-size:14px;font-family:'Inter',sans-serif;}
+.login-link-row a{color:#3a4bf4;text-decoration:none;font-weight:700;}
+.success-screen{display:none;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:40px 0;}
+.success-icon{font-size:68px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.success-title{font-size:30px;font-weight:800;letter-spacing:-1px;}
+.success-title .accent{color:#1f8a52;}
+.success-sub{color:#878f99;font-size:15px;font-family:'Inter',sans-serif;line-height:1.7;max-width:320px;}
+.prog-bar{width:200px;height:4px;background:rgba(0,0,0,.08);border-radius:999px;overflow:hidden;}
+.prog-fill{height:100%;background:#3a4bf4;width:0;border-radius:999px;transition:width 2s ease;}
+@media(max-width:768px){.gs-layout{grid-template-columns:1fr;}.gs-left{display:none;}.gs-right{padding:80px 24px;}.form-row-2{grid-template-columns:1fr;}.gs-left::after{display:none;}}
+</style>
 </head>
 <body>
-  <div class="bg-orbs">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div>
-    <div class="orb orb-3"></div><div class="orb orb-4"></div>
-  </div>
-
-  <div class="signup-layout">
-
-    <!-- Left -->
-    <div class="signup-left">
-      <a href="index.html" class="signup-logo">✦ KIKI</a>
-      <div class="signup-pitch">
-        <h2>Start building<br/>something <span>amazing</span></h2>
-        <p>Create your free account and get access to all the tools you need to design, build, and ship faster.</p>
-        <div class="perks">
-          <div class="perk">
-            <div class="perk-icon">🚀</div>
-            <div class="perk-text">
-              <div class="perk-title">Free forever plan</div>
-              <div class="perk-desc">No credit card required. Use KIKI free, forever.</div>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">🤖</div>
-            <div class="perk-text">
-              <div class="perk-title">50 AI generations/month</div>
-              <div class="perk-desc">Powered by our proprietary design AI engine.</div>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">🎨</div>
-            <div class="perk-text">
-              <div class="perk-title">20 premium templates</div>
-              <div class="perk-desc">Professional, ready-to-use designs included.</div>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">👥</div>
-            <div class="perk-text">
-              <div class="perk-title">Invite collaborators</div>
-              <div class="perk-desc">Work together with up to 3 teammates for free.</div>
-            </div>
-          </div>
-        </div>
-        <div class="left-logos">
-          <p>Trusted by teams at</p>
-          <span class="logo-pill">Stripe</span>
-          <span class="logo-pill">Notion</span>
-          <span class="logo-pill">Linear</span>
-          <span class="logo-pill">Vercel</span>
-        </div>
+<div class="particles-container" id="particles"></div>
+<div class="gs-layout">
+  <div class="gs-left">
+    <div class="gs-logo-wrap"><a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a></div>
+    <div class="gs-pitch">
+      <h2>Start building<br>something <span class="accent">amazing</span></h2>
+      <p>Create your free account and get access to all the tools you need to design, build, and ship faster.</p>
+      <div class="perks">
+        <div class="perk"><div class="perk-icon">🚀</div><div><div class="perk-title">Free forever plan</div><div class="perk-desc">No credit card required. Use KIKI free, forever.</div></div></div>
+        <div class="perk"><div class="perk-icon">🤖</div><div><div class="perk-title">50 AI generations/month</div><div class="perk-desc">Powered by our proprietary design AI engine.</div></div></div>
+        <div class="perk"><div class="perk-icon">🎨</div><div><div class="perk-title">20 premium templates</div><div class="perk-desc">Professional, ready-to-use designs included.</div></div></div>
+        <div class="perk"><div class="perk-icon">👥</div><div><div class="perk-title">Invite collaborators</div><div class="perk-desc">Work together with up to 3 teammates for free.</div></div></div>
       </div>
-    </div>
-
-    <!-- Right -->
-    <div class="signup-right">
-
-      <!-- Steps -->
-      <div class="step-indicator">
-        <div class="step active" id="step1">
-          <div class="step-num">1</div>
-          <div class="step-label">Account</div>
-        </div>
-        <div class="step-line"></div>
-        <div class="step" id="step2">
-          <div class="step-num">2</div>
-          <div class="step-label">Profile</div>
-        </div>
-        <div class="step-line"></div>
-        <div class="step" id="step3">
-          <div class="step-num">3</div>
-          <div class="step-label">Done!</div>
-        </div>
+      <div class="trust-logos">
+        <p>Trusted by teams at</p>
+        <span class="logo-pill">Stripe</span>
+        <span class="logo-pill">Notion</span>
+        <span class="logo-pill">Linear</span>
+        <span class="logo-pill">Vercel</span>
       </div>
-
-      <!-- Form -->
-      <div id="formContent">
-        <h2 class="form-title">Create your<br/><span>free account</span></h2>
-        <p class="form-sub">Set up in under 60 seconds. No credit card needed.</p>
-
-        <div class="social-logins">
-          <a href="#" class="social-login-btn"><span style="font-size:18px">G</span> Google</a>
-          <a href="#" class="social-login-btn"><span>⌨</span> GitHub</a>
-        </div>
-
-        <div class="divider-or">or sign up with email</div>
-
-        <form class="signup-form" onsubmit="handleSignup(event)">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" class="input-glass" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" class="input-glass" placeholder="Doe" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Work Email</label>
-            <input type="email" class="input-glass" placeholder="john@company.com" required />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <div class="input-password">
-              <input type="password" id="signupPw" class="input-glass" placeholder="At least 8 characters" required minlength="8" />
-              <button type="button" class="toggle-pw" onclick="togglePw()">👁</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>I want to use KIKI for</label>
-            <select class="input-glass" style="cursor:pointer">
-              <option value="" style="background:#1a1a2e">Select your primary use case</option>
-              <option value="product" style="background:#1a1a2e">Product Design</option>
-              <option value="marketing" style="background:#1a1a2e">Marketing & Branding</option>
-              <option value="web" style="background:#1a1a2e">Web & App Development</option>
-              <option value="content" style="background:#1a1a2e">Content Creation</option>
-              <option value="freelance" style="background:#1a1a2e">Freelance Work</option>
-              <option value="other" style="background:#1a1a2e">Other</option>
-            </select>
-          </div>
-          <label class="terms">
-            <input type="checkbox" required />
-            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand I'll receive occasional emails about KIKI.
-          </label>
-          <button type="submit" class="btn-signup">🚀 Create Free Account</button>
-        </form>
-
-        <div class="login-link">
-          Already have an account? <a href="login.html">Log in</a>
-        </div>
-      </div>
-
-      <!-- Success -->
-      <div class="success-screen" id="successScreen">
-        <div class="success-icon">🎉</div>
-        <h2 class="success-title">You're all<br/><span>set!</span></h2>
-        <p class="success-sub">Welcome to KIKI! Your account has been created. Redirecting you to your dashboard...</p>
-        <div style="width:200px;height:4px;background:var(--glass-bg);border-radius:100px;overflow:hidden">
-          <div id="progressBar" style="height:100%;background:var(--gradient-purple);width:0;border-radius:100px;transition:width 2s ease"></div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <script>
-    function togglePw() {
-      const pw = document.getElementById('signupPw');
-      pw.type = pw.type === 'password' ? 'text' : 'password';
-    }
-    function handleSignup(e) {
-      e.preventDefault();
-      // Animate steps
-      document.getElementById('step1').classList.add('done');
-      document.getElementById('step1').classList.remove('active');
-      document.getElementById('step2').classList.add('active');
-      setTimeout(() => {
-        document.getElementById('step2').classList.add('done');
-        document.getElementById('step2').classList.remove('active');
-        document.getElementById('step3').classList.add('active');
-        document.getElementById('formContent').style.display = 'none';
-        const s = document.getElementById('successScreen');
-        s.style.display = 'flex';
-        setTimeout(() => { document.getElementById('progressBar').style.width = '100%'; }, 100);
-        setTimeout(() => { window.location.href = 'index.html'; }, 2500);
-      }, 800);
-    }
-  </script>
+  <div class="gs-right">
+    <div class="steps">
+      <div class="step active" id="step1"><div class="step-num">1</div><div class="step-label">Account</div></div>
+      <div class="step-line"></div>
+      <div class="step" id="step2"><div class="step-num">2</div><div class="step-label">Profile</div></div>
+      <div class="step-line"></div>
+      <div class="step" id="step3"><div class="step-num">3</div><div class="step-label">Done!</div></div>
+    </div>
+
+    <div id="formContent">
+      <h2 class="form-title">Create your<br><span class="accent">free account</span></h2>
+      <p class="form-sub">Set up in under 60 seconds. No credit card needed.</p>
+      <div class="social-btns-row">
+        <a href="#" class="social-btn-half"><span style="font-weight:900;font-size:16px">G</span> Google</a>
+        <a href="#" class="social-btn-half"><span>⌨</span> GitHub</a>
+      </div>
+      <div class="or-divider">or sign up with email</div>
+      <form onsubmit="handleSignup(event)">
+        <div class="form-row-2">
+          <div class="form-group"><label>First Name</label><input type="text" class="input-field" placeholder="John" required></div>
+          <div class="form-group"><label>Last Name</label><input type="text" class="input-field" placeholder="Doe" required></div>
+        </div>
+        <div class="form-group"><label>Work Email</label><input type="email" class="input-field" placeholder="john@company.com" required></div>
+        <div class="form-group"><label>Password</label><div class="pw-wrap"><input type="password" id="signupPw" class="input-field" placeholder="At least 8 characters" required minlength="8"><button type="button" class="pw-eye" onclick="document.getElementById('signupPw').type=document.getElementById('signupPw').type==='password'?'text':'password'">👁</button></div></div>
+        <div class="form-group">
+          <label>I want to use KIKI for</label>
+          <select class="input-field" style="cursor:pointer">
+            <option value="">Select your primary use case</option>
+            <option>Product Design</option>
+            <option>Marketing & Branding</option>
+            <option>Web & App Development</option>
+            <option>Content Creation</option>
+            <option>Freelance Work</option>
+          </select>
+        </div>
+        <div class="terms-row">
+          <input type="checkbox" required>
+          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </div>
+        <button type="submit" class="submit-btn glass-btn glass-btn-primary"><span class="glass-shine"></span><span class="btn-label">🚀 Create Free Account</span></button>
+      </form>
+      <div class="login-link-row">Already have an account? <a href="login.html">Log in</a></div>
+    </div>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <h2 class="success-title">You're all<br><span class="accent">set!</span></h2>
+      <p class="success-sub">Welcome to KIKI! Your account has been created. Redirecting you to your dashboard...</p>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){const c=document.getElementById('particles');const colors=['#3a4bf4','#7b3ff2','#1f8a52','#bff2da','#ddd2fb','#f4a261'];for(let i=0;i<12;i++){const p=document.createElement('div');p.className='particle';const s=4+Math.random()*8;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*12}s;animation-duration:${10+Math.random()*14}s;`;c.appendChild(p);}})();
+function handleSignup(e){
+  e.preventDefault();
+  document.getElementById('step1').classList.add('done');document.getElementById('step1').classList.remove('active');
+  document.getElementById('step2').classList.add('active');
+  setTimeout(()=>{
+    document.getElementById('step2').classList.add('done');document.getElementById('step2').classList.remove('active');
+    document.getElementById('step3').classList.add('active');
+    document.getElementById('formContent').style.display='none';
+    const s=document.getElementById('successScreen');s.style.display='flex';
+    setTimeout(()=>{document.getElementById('progFill').style.width='100%';},100);
+    setTimeout(()=>{window.location.href='index.html';},2600);
+  },800);
+}
+</script>
 </body>
 </html>

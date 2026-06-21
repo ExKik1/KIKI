@@ -1,126 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KIKI — Resources</title>
-  <link rel="stylesheet" href="glass.css" />
-  <style>
-    .page-hero { padding: 160px 0 60px; text-align: center; }
-
-    /* Search */
-    .search-bar {
-      max-width: 560px;
-      margin: 0 auto 60px;
-      position: relative;
-    }
-    .search-bar input {
-      padding-left: 50px;
-      font-size: 16px;
-    }
-    .search-icon {
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 18px;
-      pointer-events: none;
-    }
-
-    /* Resource Cards */
-    .resource-card { padding: 28px; text-decoration: none; color: inherit; display: block; }
-    .resource-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-    .resource-card p  { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
-    .resource-meta   { display: flex; align-items: center; gap: 12px; }
-    .resource-time   { color: var(--text-muted); font-size: 12px; display: flex; align-items: center; gap: 4px; }
-
-    /* Featured Resource */
-    .featured-resource {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 64px;
-    }
-    .featured-visual {
-      background: linear-gradient(135deg,#667eea,#764ba2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      min-height: 280px;
-      position: relative;
-    }
-    .featured-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15), transparent);
-    }
-    .featured-content {
-      background: var(--glass-bg);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-      border: 1px solid var(--glass-border);
-      border-left: none;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 16px;
-    }
-    .featured-content h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.3; }
-    .featured-content p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
-
-    /* Newsletter */
-    .newsletter {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 48px 52px;
-      margin: 80px 0;
-      border-radius: 28px;
-    }
-    .newsletter h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .newsletter p { color: var(--text-secondary); font-size: 15px; line-height: 1.6; }
-    .newsletter-form { display: flex; gap: 10px; }
-    .newsletter-form input { flex: 1; }
-
-    /* Changelog */
-    .changelog-item {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 24px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--glass-border);
-      align-items: start;
-    }
-    .changelog-item:last-child { border-bottom: none; }
-    .changelog-date { font-size: 13px; color: var(--text-muted); font-weight: 500; padding-top: 4px; }
-    .changelog-content h4 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-    .changelog-content p  { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
-    .changelog-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-
-    @media (max-width: 768px) {
-      .featured-resource, .newsletter { grid-template-columns: 1fr; }
-      .featured-visual { min-height: 160px; }
-      .newsletter { padding: 28px; }
-      .newsletter-form { flex-direction: column; }
-      .changelog-item { grid-template-columns: 1fr; gap: 8px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI — Resources</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.search-wrap{position:relative;max-width:520px;margin-bottom:48px;}
+.search-wrap input{padding-left:48px;}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none;}
+.featured-card{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(20,20,30,.07);margin-bottom:64px;}
+.featured-visual{background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:80px;min-height:260px;}
+.featured-body{padding:36px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.featured-body h2{font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1.3;margin:0;}
+.featured-body p{font-size:15px;color:#878f99;font-family:'Inter',sans-serif;line-height:1.7;margin:0;}
+.guide-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;padding:24px;box-shadow:0 4px 20px rgba(20,20,30,.06);transition:transform .3s,box-shadow .3s;}
+.guide-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(20,20,30,.12);}
+.guide-card h3{font-size:16px;font-weight:800;margin:0 0 8px;color:#13151f;}
+.guide-card p{font-size:13.5px;color:#878f99;font-family:'Inter',sans-serif;line-height:1.6;margin:0 0 14px;}
+.guide-meta{display:flex;align-items:center;gap:10px;}
+.guide-time{font-size:12px;color:#aab0ba;font-family:'Inter',sans-serif;}
+.nl-box{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;padding:44px 48px;box-shadow:0 4px 24px rgba(20,20,30,.07);margin:64px 0;}
+.nl-box h2{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+.nl-box p{font-size:15px;color:#878f99;font-family:'Inter',sans-serif;margin:0;}
+.nl-form{display:flex;gap:10px;}
+.nl-form input{flex:1;}
+.nl-note{font-size:12px;color:#aab0ba;font-family:'Inter',sans-serif;margin-top:8px;}
+.cl-item{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid rgba(0,0,0,.06);align-items:start;}
+.cl-item:last-child{border-bottom:none;}
+.cl-date{font-size:12.5px;color:#aab0ba;font-weight:600;font-family:'Inter',sans-serif;padding-top:3px;}
+.cl-content h4{font-size:16px;font-weight:800;margin:0 0 6px;}
+.cl-content p{font-size:13.5px;color:#878f99;font-family:'Inter',sans-serif;line-height:1.6;margin:0 0 10px;}
+.cl-tags{display:flex;gap:6px;flex-wrap:wrap;}
+@media(max-width:768px){.featured-card,.nl-box{grid-template-columns:1fr;}.featured-visual{min-height:160px;}.cl-item{grid-template-columns:1fr;gap:4px;}}
+</style>
 </head>
 <body>
-  <div class="bg-orbs">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div>
-    <div class="orb orb-3"></div><div class="orb orb-4"></div>
-  </div>
-
-  <nav class="navbar">
-    <a class="nav-logo" href="index.html">✦ KIKI</a>
+<div class="particles-container" id="particles"></div>
+<div class="page">
+  <nav class="nav">
+    <a href="index.html" class="logo"><svg class="logo-img" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a>
     <ul class="nav-links">
       <li><a href="features.html">Features</a></li>
       <li><a href="templates.html">Templates</a></li>
@@ -129,183 +48,79 @@
       <li><a href="about.html">About Us</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="login.html" class="btn-ghost">Log in</a>
-      <a href="get-started.html" class="btn-primary">Get Started</a>
+      <a href="login.html" class="login-link">Log in</a>
+      <button class="btn btn-primary glass-btn glass-btn-primary" onclick="location.href='get-started.html'"><span class="glass-shine"></span><span class="btn-label">Get Started</span></button>
     </div>
   </nav>
 
-  <div class="page-wrapper">
-    <div class="container">
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="eyebrow">📚 Resource Hub</div>
+      <h1>Learn, Grow &<br><span class="accent">Build Faster</span></h1>
+      <p>Tutorials, docs, guides, and inspiration — everything you need to master KIKI.</p>
+    </div>
+  </section>
 
-      <section class="page-hero">
-        <div class="section-badge">📚 Resource Hub</div>
-        <h1 class="section-title">Learn, Grow &<br/><span>Build Faster</span></h1>
-        <p class="section-subtitle">Tutorials, docs, guides, and inspiration — everything you need to master KIKI.</p>
-      </section>
-
-      <!-- Search -->
-      <div class="search-bar fade-in">
-        <span class="search-icon">🔍</span>
-        <input type="text" class="input-glass" placeholder="Search docs, tutorials, guides..." />
-      </div>
-
-      <!-- Featured -->
-      <div class="featured-resource glass-card fade-in">
-        <div class="featured-visual">📖</div>
-        <div class="featured-content">
-          <span class="tag tag-purple">New Guide</span>
-          <h2>Complete KIKI Masterclass: From Zero to Pro</h2>
-          <p>A comprehensive 12-part video series covering every feature of KIKI — from basic setup to advanced AI workflows and team collaboration.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a href="watch-demo.html" class="btn-primary">▶ Start Learning</a>
-            <a href="#" class="btn-secondary" style="padding:10px 20px;font-size:14px">📥 Download PDF</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Resource Grid -->
-      <div class="section-header fade-in">
-        <div class="section-badge">📝 Documentation</div>
-        <h2 class="section-title">Guides &<br/><span>Tutorials</span></h2>
-      </div>
-
-      <div class="grid-3">
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-purple">🚀</div>
-          <h3>Getting Started Guide</h3>
-          <p>Set up your first project in minutes. Learn the basics of KIKI's interface and core tools.</p>
-          <div class="resource-meta">
-            <span class="tag tag-green">Beginner</span>
-            <span class="resource-time">⏱ 10 min read</span>
-          </div>
-        </a>
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-blue">🤖</div>
-          <h3>AI Design Workflows</h3>
-          <p>Learn how to prompt the AI effectively and chain multiple AI operations for complex designs.</p>
-          <div class="resource-meta">
-            <span class="tag tag-blue">Intermediate</span>
-            <span class="resource-time">⏱ 20 min read</span>
-          </div>
-        </a>
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-green">👥</div>
-          <h3>Team Collaboration Setup</h3>
-          <p>Configure permissions, invite members, and establish efficient collaboration workflows.</p>
-          <div class="resource-meta">
-            <span class="tag tag-blue">Intermediate</span>
-            <span class="resource-time">⏱ 15 min read</span>
-          </div>
-        </a>
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-pink">🎨</div>
-          <h3>Design System Guide</h3>
-          <p>Build a scalable, consistent design system with tokens, components, and documentation.</p>
-          <div class="resource-meta">
-            <span class="tag tag-pink">Advanced</span>
-            <span class="resource-time">⏱ 35 min read</span>
-          </div>
-        </a>
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-orange">🔌</div>
-          <h3>API & Integrations</h3>
-          <p>Connect KIKI to your existing tools using our REST API, webhooks, and native integrations.</p>
-          <div class="resource-meta">
-            <span class="tag tag-pink">Advanced</span>
-            <span class="resource-time">⏱ 40 min read</span>
-          </div>
-        </a>
-        <a href="#" class="glass-card resource-card fade-in">
-          <div class="icon-box icon-box-purple">📤</div>
-          <h3>Exporting & Publishing</h3>
-          <p>Export to any format, publish directly to the web, or generate production-ready code.</p>
-          <div class="resource-meta">
-            <span class="tag tag-green">Beginner</span>
-            <span class="resource-time">⏱ 12 min read</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Newsletter -->
-      <div class="glass-card newsletter fade-in">
-        <div>
-          <div class="section-badge" style="margin-bottom:12px">📬 Newsletter</div>
-          <h2>Stay in the Loop</h2>
-          <p>Get weekly tips, tutorials, and product updates delivered to your inbox. Join 28,000+ creators.</p>
-        </div>
-        <div>
-          <div class="newsletter-form">
-            <input type="email" class="input-glass" placeholder="Enter your email address..." />
-            <a href="#" class="btn-primary" style="white-space:nowrap">Subscribe →</a>
-          </div>
-          <p style="color:var(--text-muted);font-size:12px;margin-top:10px">No spam, ever. Unsubscribe with one click.</p>
-        </div>
-      </div>
-
-      <!-- Changelog -->
-      <div class="section-header fade-in">
-        <div class="section-badge">📋 Changelog</div>
-        <h2 class="section-title">What's <span>New</span></h2>
-      </div>
-
-      <div class="glass-card" style="padding:8px 36px 28px; margin-bottom: 80px;" >
-        <div class="changelog-item fade-in">
-          <div class="changelog-date">June 2026</div>
-          <div class="changelog-content">
-            <h4>KIKI v2.0 — Major Release 🎉</h4>
-            <p>Complete redesign with iOS 27 Glassmorphism UI, new AI engine, and real-time multiplayer collaboration engine rebuilt from scratch.</p>
-            <div class="changelog-tags"><span class="tag tag-purple">Major</span><span class="tag tag-green">AI</span><span class="tag tag-blue">UI</span></div>
-          </div>
-        </div>
-        <div class="changelog-item fade-in">
-          <div class="changelog-date">May 2026</div>
-          <div class="changelog-content">
-            <h4>AI Code Export — Generate React & Vue</h4>
-            <p>Export any design as clean, production-ready React or Vue code with one click. Supports TypeScript, Tailwind, and CSS Modules.</p>
-            <div class="changelog-tags"><span class="tag tag-blue">Feature</span><span class="tag tag-green">AI</span></div>
-          </div>
-        </div>
-        <div class="changelog-item fade-in">
-          <div class="changelog-date">Apr 2026</div>
-          <div class="changelog-content">
-            <h4>Template Marketplace Launch</h4>
-            <p>Over 200 community-created templates now available. Browse by category, preview live, and deploy with one click.</p>
-            <div class="changelog-tags"><span class="tag tag-pink">Feature</span></div>
-          </div>
-        </div>
-        <div class="changelog-item fade-in">
-          <div class="changelog-date">Mar 2026</div>
-          <div class="changelog-content">
-            <h4>Performance Improvements & Bug Fixes</h4>
-            <p>40% faster load times, improved offline mode stability, and over 60 reported bugs fixed.</p>
-            <div class="changelog-tags"><span class="tag tag-orange">Performance</span><span class="tag tag-green">Fix</span></div>
-          </div>
-        </div>
-      </div>
-
+  <section class="section" style="padding-top:0">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="input-field" placeholder="Search docs, tutorials, guides...">
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-brand"><a class="nav-logo" href="index.html">✦ KIKI</a><p>The next generation creative platform.</p></div>
-          <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
-          <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
-          <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2026 KIKI. All rights reserved.</p>
-          <div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div>
+    <div class="featured-card">
+      <div class="featured-visual">📖</div>
+      <div class="featured-body">
+        <span class="tag tag-lilac" style="width:fit-content">New Guide</span>
+        <h2>Complete KIKI Masterclass: From Zero to Pro</h2>
+        <p>A comprehensive 12-part video series covering every feature — from basic setup to advanced AI workflows and team collaboration.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+          <button class="btn btn-primary glass-btn glass-btn-primary btn-cta" onclick="location.href='watch-demo.html'"><span class="glass-shine"></span><span class="btn-label">▶ Start Learning</span><span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></button>
+          <button class="btn btn-secondary glass-btn glass-btn-secondary btn-cta" style="padding:10px 18px;font-size:14px"><span class="glass-shine"></span><span class="btn-label">📥 Download PDF</span></button>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
 
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-  <script>
-    window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400); });
-    const observer = new IntersectionObserver(els => els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+    <div class="section-header"><div class="eyebrow-sm">📝 Documentation</div><h2>Guides & <span class="accent">Tutorials</span></h2></div>
+    <div class="grid-3" style="margin-bottom:64px">
+      <div class="guide-card"><div class="icon-box icon-box-blue" style="margin-bottom:16px">🚀</div><h3>Getting Started Guide</h3><p>Set up your first project in minutes. Learn the basics of KIKI's interface and core tools.</p><div class="guide-meta"><span class="tag tag-mint">Beginner</span><span class="guide-time">⏱ 10 min read</span></div></div>
+      <div class="guide-card"><div class="icon-box icon-box-lilac" style="margin-bottom:16px">🤖</div><h3>AI Design Workflows</h3><p>Learn how to prompt the AI effectively and chain multiple AI operations for complex designs.</p><div class="guide-meta"><span class="tag tag-blue">Intermediate</span><span class="guide-time">⏱ 20 min read</span></div></div>
+      <div class="guide-card"><div class="icon-box icon-box-mint" style="margin-bottom:16px">👥</div><h3>Team Collaboration Setup</h3><p>Configure permissions, invite members, and establish efficient collaboration workflows.</p><div class="guide-meta"><span class="tag tag-blue">Intermediate</span><span class="guide-time">⏱ 15 min read</span></div></div>
+      <div class="guide-card"><div class="icon-box icon-box-orange" style="margin-bottom:16px">🎨</div><h3>Design System Guide</h3><p>Build a scalable, consistent design system with tokens, components, and documentation.</p><div class="guide-meta"><span class="tag tag-lilac">Advanced</span><span class="guide-time">⏱ 35 min read</span></div></div>
+      <div class="guide-card"><div class="icon-box icon-box-blue" style="margin-bottom:16px">🔌</div><h3>API & Integrations</h3><p>Connect KIKI to your existing tools using our REST API, webhooks, and native integrations.</p><div class="guide-meta"><span class="tag tag-lilac">Advanced</span><span class="guide-time">⏱ 40 min read</span></div></div>
+      <div class="guide-card"><div class="icon-box icon-box-mint" style="margin-bottom:16px">📤</div><h3>Exporting & Publishing</h3><p>Export to any format, publish to the web, or generate production-ready code.</p><div class="guide-meta"><span class="tag tag-mint">Beginner</span><span class="guide-time">⏱ 12 min read</span></div></div>
+    </div>
+
+    <div class="nl-box">
+      <div><div class="eyebrow-sm" style="margin-bottom:12px">📬 Newsletter</div><h2>Stay in the Loop</h2><p>Weekly tips, tutorials, and product updates. Join 28,000+ creators.</p></div>
+      <div>
+        <div class="nl-form"><input type="email" class="input-field" placeholder="Enter your email address..."><button class="btn btn-primary glass-btn glass-btn-primary" style="white-space:nowrap;padding:13px 20px"><span class="glass-shine"></span><span class="btn-label">Subscribe →</span></button></div>
+        <div class="nl-note">No spam, ever. Unsubscribe with one click.</div>
+      </div>
+    </div>
+
+    <div class="section-header"><div class="eyebrow-sm">📋 Changelog</div><h2>What's <span class="accent">New</span></h2></div>
+    <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;padding:8px 32px 24px;box-shadow:0 4px 20px rgba(20,20,30,.06)">
+      <div class="cl-item"><div class="cl-date">June 2026</div><div class="cl-content"><h4>KIKI v2.0 — Major Release 🎉</h4><p>Complete redesign, new AI engine, and real-time multiplayer collaboration rebuilt from scratch.</p><div class="cl-tags"><span class="tag tag-lilac">Major</span><span class="tag tag-blue">AI</span></div></div></div>
+      <div class="cl-item"><div class="cl-date">May 2026</div><div class="cl-content"><h4>AI Code Export — Generate React & Vue</h4><p>Export any design as clean, production-ready React or Vue code with one click. Supports TypeScript, Tailwind, and CSS Modules.</p><div class="cl-tags"><span class="tag tag-blue">Feature</span><span class="tag tag-mint">AI</span></div></div></div>
+      <div class="cl-item"><div class="cl-date">Apr 2026</div><div class="cl-content"><h4>Template Marketplace Launch</h4><p>200+ community-created templates now available. Browse by category, preview live, and deploy with one click.</p><div class="cl-tags"><span class="tag tag-mint">Feature</span></div></div></div>
+      <div class="cl-item"><div class="cl-date">Mar 2026</div><div class="cl-content"><h4>Performance Improvements & Bug Fixes</h4><p>40% faster load times, improved offline stability, and 60+ reported bugs fixed.</p><div class="cl-tags"><span class="tag tag-orange">Performance</span></div></div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="logo" style="font-size:18px"><svg style="height:24px;width:auto" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#3a4bf4"/><text x="15" y="20" font-size="14" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">K</text></svg>KIKI</a><p>The next-generation creative platform.</p></div>
+      <div class="footer-col"><h4>Product</h4><a href="features.html">Features</a><a href="templates.html">Templates</a><a href="pricing.html">Pricing</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="resources.html">Resources</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="login.html">Log In</a><a href="get-started.html">Sign Up</a><a href="watch-demo.html">Watch Demo</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 KIKI. All rights reserved.</p><div class="footer-socials"><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">in</a><a class="social-btn" href="#">⌨</a></div></div>
+  </footer>
+</div>
+<button class="scroll-top" id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){const c=document.getElementById('particles');const colors=['#3a4bf4','#7b3ff2','#1f8a52','#bff2da','#ddd2fb','#f4a261'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='particle';const s=4+Math.random()*10;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*12}s;animation-duration:${10+Math.random()*14}s;`;c.appendChild(p);}})();
+window.addEventListener('scroll',()=>{document.getElementById('st').classList.toggle('show',window.scrollY>400);});
+</script>
 </body>
 </html>
